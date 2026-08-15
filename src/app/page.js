@@ -5,6 +5,7 @@ import Product from '@/models/Product';
 import Testimonial from '@/models/Testimonial';
 import Setting from '@/models/Setting';
 import HeroSection from '@/components/HeroSection';
+import ServicesCatalog from '@/components/ServicesCatalog';
 
 // Next.js page is server-rendered by default
 export default async function Home() {
@@ -59,74 +60,14 @@ export default async function Home() {
 
   const finalTestimonials = testimonials.length > 0 ? testimonials : backupTestimonials;
 
-  const services = [
-    {
-      title: "Swimming Pool Engineering",
-      desc: "Turnkey design, structural excavation, plumbing systems, and filtration plant installation.",
-      img: "https://www.aaturnertankers.co.uk/wp-content/uploads/2023/10/iStock-1297375155-1024x683.jpg"
-    },
-    {
-      title: "Structural Waterproofing",
-      desc: "Indore's major B2B contractor for concrete pool leak-proofing and structural repair.",
-      img: "https://img.freepik.com/free-photo/umbrella-chair_74190-2092.jpg?semt=ais_hybrid&w=740"
-    },
-    {
-      title: "Water Features & Waterparks",
-      desc: "Outdoor water amusement structures, artificial waterfalls, and custom rock fountains.",
-      img: "https://img.staticmb.com/mbcontent/images/crop/uploads/2024/11/Water-Bodies-and-Indoor-Fountains_0_1200.jpg"
-    },
-    {
-      title: "Wellness & Spa Suites",
-      desc: "Automated residential and commercial steam bath generators, saunas, and hot tub jacuzzis.",
-      img: "https://img.freepik.com/premium-photo/reflection-illuminated-buddha-statue-with-gazebos-swimming-pool-night_1048944-23840336.jpg?w=900"
-    }
-  ];
-
   return (
     <div style={{ position: 'relative' }}>
 
       {/* ---------- Hero Section ---------- */}
       <HeroSection backgroundImages={heroBackgrounds} branding={siteBranding} />
 
-      {/* ---------- Services Section ---------- */}
-      <section className="section">
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <h2 className="text-gradient" style={{ fontSize: '36px', marginBottom: '16px' }}>Turnkey Aquatic Services</h2>
-            <p style={{ color: 'var(--text-gray)', maxWidth: '600px', margin: '0 auto' }}>
-              We design and construct premium aquatic infrastructures. Our engineers handle everything from drawing layouts to mechanical setups.
-            </p>
-          </div>
-
-          <div className="grid-2">
-            {services.map((svc, idx) => (
-              <div key={idx} className="glass-card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ height: '240px', position: 'relative', background: '#051329' }}>
-                  <img
-                    src={svc.img}
-                    alt={svc.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      opacity: 0.85
-                    }}
-                  />
-                </div>
-                <div style={{ padding: '28px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
-                    <h3 style={{ fontSize: '20px', marginBottom: '12px', color: 'var(--text-white)' }}>{svc.title}</h3>
-                    <p style={{ color: 'var(--text-gray)', fontSize: '14px', marginBottom: '20px' }}>{svc.desc}</p>
-                  </div>
-                  <Link href="/contact" style={{ color: 'var(--secondary-color)', fontWeight: '600', fontSize: '14px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                    Request Site Inspection &rarr;
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ---------- Services Catalog Section ---------- */}
+      <ServicesCatalog />
 
       {/* ---------- Featured Products Showcase ---------- */}
       <section className="section" style={{ background: 'var(--bg-navy)' }}>

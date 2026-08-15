@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ContactPage() {
   // Contact Form State
@@ -11,6 +11,23 @@ export default function ContactPage() {
     subject: 'Swimming Pool Construction',
     message: ''
   });
+
+  // Check for pre-filled query parameters (subject, message) on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const querySubject = params.get('subject');
+      const queryMessage = params.get('message');
+      
+      if (querySubject || queryMessage) {
+        setContactData(prev => ({
+          ...prev,
+          subject: querySubject ? querySubject : prev.subject,
+          message: queryMessage ? queryMessage : prev.message
+        }));
+      }
+    }
+  }, []);
   const [contactStatus, setContactStatus] = useState({ loading: false, success: null, error: null });
 
   // Testimonial Form State
@@ -195,10 +212,16 @@ export default function ContactPage() {
                   className="form-input"
                   style={{ background: 'var(--bg-navy)' }}
                 >
-                  <option value="Swimming Pool Construction">Swimming Pool Construction</option>
+                  <option value="Pool Construction">Pool Construction</option>
+                  <option value="3D Pool Designing">3D Pool Designing</option>
+                  <option value="Turnkey Facility Building">Turnkey Facility Building</option>
+                  <option value="Filtration & Pipe Installing">Filtration & Pipe Installing</option>
+                  <option value="Structural Consulting">Structural Consulting</option>
+                  <option value="Pool Equipment Supply">Pool Equipment Supply</option>
+                  <option value="Premium Accessories">Premium Accessories</option>
+                  <option value="Boutique Pool Maintenance">Boutique Pool Maintenance</option>
+                  <option value="Modern Pool Renovation">Modern Pool Renovation</option>
                   <option value="Pool Waterproofing Consultation">Pool Waterproofing Consultation</option>
-                  <option value="Waterpark Development">Waterpark Development</option>
-                  <option value="Wellness Steam Generators">Wellness Steam Generators</option>
                   <option value="B2B Equipment Wholesale">B2B Equipment Wholesale</option>
                 </select>
               </div>
