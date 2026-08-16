@@ -40,6 +40,7 @@ export default function Footer() {
             <h4 className="footer-title">Navigation</h4>
             <ul className="footer-links">
               <li><Link href="/">Home</Link></li>
+              <li><Link href="/what-we-build">What We Build</Link></li>
               <li><Link href="/services">Turnkey Services</Link></li>
               <li><Link href="/about">About Corporate</Link></li>
               <li><Link href="/store">Product Store</Link></li>

@@ -1,134 +1,156 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-export default function ServicesPage() {
-  const services = [
-    {
-      title: "Pool Construction",
-      category: "Construction",
-      desc: "Heavy-duty concrete excavation, steel reinforcement, and structural shell casting.",
-      longDesc: "We carry out high-strength reinforced cement concrete (RCC) pool constructions engineered to withstand heavy hydrostatic and soil pressures. Our civil engineering teams manage structural excavation, layout formwork, double-layer Fe500 steel reinforcement grids, and monolithic concrete casting with crystalline waterproof additives.",
-      img: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800",
-      pipeline: ["Excavation", "Steel Reinforcement", "Concrete Casting", "Water Testing"],
-      specs: {
-        "Typical Timeline": "45 - 90 Days",
-        "Structural Material": "M30 Grade Concrete with Fe500 Steel",
-        "Waterproofing": "Monolithic Crystalline Admixtures",
-        "Engineering Standards": "IS 456 & IS 3370 Compliant"
-      }
-    },
-    {
-      title: "3D Pool Designing",
-      category: "Designing",
-      desc: "Custom architectural planning, 3D CAD modeling, and hydraulic system blueprints.",
-      longDesc: "Our design studio creates precise 3D architectural renders and virtual walk-throughs of your pool concepts. We map out structural topography, surrounding pool deck integrations, hydraulic piping friction loss calculations, and mechanical filter room layouts. This ensures perfect sizing before any soil is moved.",
-      img: "https://images.unsplash.com/photo-1503387762458-bf48293b1d30?q=80&w=800",
-      pipeline: ["Concept Sketch", "3D Modeling", "Hydraulic Sizing", "Approved Blueprints"],
-      specs: {
-        "Turnaround": "5 - 12 Days",
-        "Software Stack": "AutoCAD, SolidWorks & 3ds Max Studio",
-        "Deliverables": "3D Photorealistic Visuals & 2D Hydraulic Blueprints",
-        "Design Standards": "SP 34 & IS Code Guidelines"
-      }
-    },
-    {
-      title: "Turnkey Facility Building",
-      category: "Building",
-      desc: "End-to-end commercial builders for resorts, waterparks, and competition pools.",
-      longDesc: "We specialize in constructing large-scale commercial aquatic projects for hotels, high-end housing clubs, and waterparks. Our engineering division manages structural planning, electrical control automation, perimeter overflow channels, surge tanks, and high-rate mechanical filtration operations.",
-      img: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=800",
-      pipeline: ["Structural Design", "Hydraulic Piping", "Mechanical Rooms", "Surge Tank Testing"],
-      specs: {
-        "Scope Size": "Commercial & Resort Complexes",
-        "Compliance": "FINA Standard Compliant",
-        "Sanitation Systems": "High-Output Ozone & Surge Tank Systems",
-        "Project Period": "90 - 180 Days"
-      }
-    },
-    {
-      title: "Filtration & Pipe Installing",
-      category: "Installing",
-      desc: "Precision plumbing, high-rate filtration plant, and automated chemical controls.",
-      longDesc: "We install heavy-duty, pressure-rated schedule-80 UPVC piping layouts designed to optimize pool water circulation and eliminate dead-zones. Our mechanical crew sets up premium high-rate fiberglass sand filter plants, automated disinfection units, and variable speed pump systems.",
-      img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800",
-      pipeline: ["Pipe Layouts", "Equipment Sizing", "Filter Placement", "Pressure Balancing"],
-      specs: {
-        "Pipe Quality": "Schedule-80 Heavy Duty UPVC Pipes",
-        "Filters Used": "Fiberglass Sand & Multi-Port Valve Plants",
-        "Sanitation Controls": "Automated Chlorine Dosing & UV Disinfection",
-        "Test Standard": "Pressure Tested up to 10 Bar"
-      }
-    },
-    {
-      title: "Structural Consulting",
-      category: "Consultant",
-      desc: "Expert soil testing, leak investigations, waterproofing planning, and site assessments.",
-      longDesc: "VPT provides professional diagnostic and consulting services for water containment structures. Our engineers run pressure testing, chemical concrete analysis, and moisture tracking to diagnose structural cracks and design detailed waterproofing repair specifications.",
-      img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800",
-      pipeline: ["Site Inspection", "Pressure Diagnostics", "Load Assessment", "Structural Report"],
-      specs: {
-        "Services Offered": "Leak detection, Soil load analysis & Crack forensics",
-        "Diagnostics Used": "Thermal Imaging & Pressure Diagnostics",
-        "Consultant Status": "Licensed Structural Engineers",
-        "Reporting": "Detailed CAD Reports in 3 Days"
-      }
-    },
-    {
-      title: "Pool Equipment Supply",
-      category: "Equipment",
-      desc: "Direct B2B supply of heavy-duty commercial sand filters, pumps, and sanitization.",
-      longDesc: "As a major Central India distributor, we offer direct B2B pricing on commercial pool hardware. We supply high-efficiency pool pumps, glass filter media, multi-port control valves, salt-chlorine generators, and automated chemical control panels directly to developers and site contractors.",
-      img: "https://images.unsplash.com/photo-1622322428943-e11418701a30?q=80&w=800",
-      pipeline: ["Equipment Specs", "Direct Quote", "Quality Packing", "Wholesale Shipping"],
-      specs: {
-        "Equipment Catalog": "Pumps, Filtration Plants, Salt Sanitizers",
-        "Brands Sourced": "AstralPool, Hayward, VPT Specialty",
-        "Warranty Offered": "2-Year Manufacturer Warranty",
-        "Wholesale Shipping": "Central India Delivery within 48 Hours"
-      }
-    },
-    {
-      title: "Premium Accessories",
-      category: "Accessories",
-      desc: "High-quality stainless steel ladders, underwater LED lights, and custom water fountains.",
-      longDesc: "Enhance pool aesthetics with our premium hardware catalog. We manufacture and supply AISI-304/316 stainless steel pool ladders, underwater RGB LED lights, custom water fountain nozzles, and overflow drain grates built to withstand chemical pool environments.",
-      img: "https://images.unsplash.com/photo-1572331165267-854da2b10ccc?q=80&w=800",
-      pipeline: ["Accessory Spec", "Metal Grade Sizing", "IP68 Testing", "Custom Fitment"],
-      specs: {
-        "Metal Grade": "AISI 304 & AISI 316 Stainless Steel",
-        "Aesthetics": "RGB LED Remote Lights (IP68 Waterproof)",
-        "Accessories": "Ladders, Grab Rails, Fountain Nozzles",
-        "Corrosion Guarantee": "5-Year Rust Free Warranty"
-      }
-    },
-    {
-      title: "Boutique Pool Maintenance",
-      category: "Maintenance",
-      desc: "Annual maintenance contracts (AMC), water balancing, sanitization, and deep cleaning.",
-      longDesc: "Bespoke annual maintenance contracts (AMC) for commercial resort facilities and residential estates. Our certified pool operators manage weekly water chemistry audits, filter backwashing, system inspections, wall brushing, and automatic robotic vacuum cleaning.",
-      img: "https://images.unsplash.com/photo-1500333917452-484122b8b9e0?q=80&w=800",
-      pipeline: ["AMC Agreement", "Chemistry Auditing", "Deep Sanitization", "Equipment Tuning"],
-      specs: {
-        "Visit Frequency": "Weekly & Bi-Weekly Packages",
-        "Chemical Controls": "pH, Chlorine, Algaecide & Hardness Balancing",
-        "Upkeep Systems": "Robotic Wall Cleaners & Skimmer Maintenance",
-        "Emergency AMC": "24-Hour Callout Resolution"
-      }
-    },
-    {
-      title: "Modern Pool Renovation",
-      category: "Renovation",
-      desc: "Complete mosaic retiling, structural leak-proofing, and mechanical system restoration.",
-      longDesc: "We restore aged, leaking, or structurally failing pools back to pristine condition. Our team strips old mosaic tiles, repairs concrete degradation with pressure epoxy injections, replaces piping layouts, and upgrades mechanical systems with energy-efficient hardware.",
-      img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800",
-      pipeline: ["Demolition & Stripping", "Leak-Proof Coatings", "Tiling & Fitting", "System Commissioning"],
-      specs: {
-        "Renovations Offered": "Tiling, Plumbing & Deck Remodeling",
-        "Waterproofing Repair": "Crystalline Leak-Proof Polymer Coatings",
-        "Mechanicals Upgrade": "Energy-Efficient Variable Speed Pumps",
-        "Aesthetic Conversion": "Skimmer to Infinity Overflow Upgrade"
-      }
+const defaultServices = [
+  {
+    title: "Pool Construction",
+    category: "Construction",
+    desc: "Heavy-duty concrete excavation, steel reinforcement, and structural shell casting.",
+    longDesc: "We carry out high-strength reinforced cement concrete (RCC) pool constructions engineered to withstand heavy hydrostatic and soil pressures. Our civil engineering teams manage structural excavation, layout formwork, double-layer Fe500 steel reinforcement grids, and monolithic concrete casting with crystalline waterproof additives.",
+    img: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=800",
+    pipeline: ["Excavation", "Steel Reinforcement", "Concrete Casting", "Water Testing"],
+    specs: {
+      "Typical Timeline": "45 - 90 Days",
+      "Structural Material": "M30 Grade Concrete with Fe500 Steel",
+      "Waterproofing": "Monolithic Crystalline Admixtures",
+      "Engineering Standards": "IS 456 & IS 3370 Compliant"
     }
-  ];
+  },
+  {
+    title: "3D Pool Designing",
+    category: "Designing",
+    desc: "Custom architectural planning, 3D CAD modeling, and hydraulic system blueprints.",
+    longDesc: "Our design studio creates precise 3D architectural renders and virtual walk-throughs of your pool concepts. We map out structural topography, surrounding pool deck integrations, hydraulic piping friction loss calculations, and mechanical filter room layouts. This ensures perfect sizing before any soil is moved.",
+    img: "https://images.unsplash.com/photo-1503387762458-bf48293b1d30?q=80&w=800",
+    pipeline: ["Concept Sketch", "3D Modeling", "Hydraulic Sizing", "Approved Blueprints"],
+    specs: {
+      "Turnaround": "5 - 12 Days",
+      "Software Stack": "AutoCAD, SolidWorks & 3ds Max Studio",
+      "Deliverables": "3D Photorealistic Visuals & 2D Hydraulic Blueprints",
+      "Design Standards": "SP 34 & IS Code Guidelines"
+    }
+  },
+  {
+    title: "Turnkey Facility Building",
+    category: "Building",
+    desc: "End-to-end commercial builders for resorts, waterparks, and competition pools.",
+    longDesc: "We specialize in constructing large-scale commercial aquatic projects for hotels, high-end housing clubs, and waterparks. Our engineering division manages structural planning, electrical control automation, perimeter overflow channels, surge tanks, and high-rate mechanical filtration operations.",
+    img: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=800",
+    pipeline: ["Structural Design", "Hydraulic Piping", "Mechanical Rooms", "Surge Tank Testing"],
+    specs: {
+      "Scope Size": "Commercial & Resort Complexes",
+      "Compliance": "FINA Standard Compliant",
+      "Sanitation Systems": "High-Output Ozone & Surge Tank Systems",
+      "Project Period": "90 - 180 Days"
+    }
+  },
+  {
+    title: "Filtration & Pipe Installing",
+    category: "Installing",
+    desc: "Precision plumbing, high-rate filtration plant, and automated chemical controls.",
+    longDesc: "We install heavy-duty, pressure-rated schedule-80 UPVC piping layouts designed to optimize pool water circulation and eliminate dead-zones. Our mechanical crew sets up premium high-rate fiberglass sand filter plants, automated disinfection units, and variable speed pump systems.",
+    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800",
+    pipeline: ["Pipe Layouts", "Equipment Sizing", "Filter Placement", "Pressure Balancing"],
+    specs: {
+      "Pipe Quality": "Schedule-80 Heavy Duty UPVC Pipes",
+      "Filters Used": "Fiberglass Sand & Multi-Port Valve Plants",
+      "Sanitation Controls": "Automated Chlorine Dosing & UV Disinfection",
+      "Test Standard": "Pressure Tested up to 10 Bar"
+    }
+  },
+  {
+    title: "Structural Consulting",
+    category: "Consultant",
+    desc: "Expert soil testing, leak investigations, waterproofing planning, and site assessments.",
+    longDesc: "VPT provides professional diagnostic and consulting services for water containment structures. Our engineers run pressure testing, chemical concrete analysis, and moisture tracking to diagnose structural cracks and design detailed waterproofing repair specifications.",
+    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800",
+    pipeline: ["Site Inspection", "Pressure Diagnostics", "Load Assessment", "Structural Report"],
+    specs: {
+      "Services Offered": "Leak detection, Soil load analysis & Crack forensics",
+      "Diagnostics Used": "Thermal Imaging & Pressure Diagnostics",
+      "Consultant Status": "Licensed Structural Engineers",
+      "Reporting": "Detailed CAD Reports in 3 Days"
+    }
+  },
+  {
+    title: "Pool Equipment Supply",
+    category: "Equipment",
+    desc: "Direct B2B supply of heavy-duty commercial sand filters, pumps, and sanitization systems.",
+    longDesc: "As a major Central India distributor, we offer direct B2B pricing on commercial pool hardware. We supply high-efficiency pool pumps, glass filter media, multi-port control valves, salt-chlorine generators, and automated chemical control panels directly to developers and site contractors.",
+    img: "https://images.unsplash.com/photo-1622322428943-e11418701a30?q=80&w=800",
+    pipeline: ["Equipment Specs", "Direct Quote", "Quality Packing", "Wholesale Shipping"],
+    specs: {
+      "Equipment Catalog": "Pumps, Filtration Plants, Salt Sanitizers",
+      "Brands Sourced": "AstralPool, Hayward, VPT Specialty",
+      "Warranty Offered": "2-Year Manufacturer Warranty",
+      "Wholesale Shipping": "Central India Delivery within 48 Hours"
+    }
+  },
+  {
+    title: "Premium Accessories",
+    category: "Accessories",
+    desc: "High-quality stainless steel ladders, underwater LED lights, and custom water fountains.",
+    longDesc: "Enhance pool aesthetics with our premium hardware catalog. We manufacture and supply AISI-304/316 stainless steel pool ladders, underwater RGB LED lights, custom water fountain nozzles, and overflow drain grates built to withstand chemical pool environments.",
+    img: "https://images.unsplash.com/photo-1572331165267-854da2b10ccc?q=80&w=800",
+    pipeline: ["Accessory Spec", "Metal Grade Sizing", "IP68 Testing", "Custom Fitment"],
+    specs: {
+      "Metal Grade": "AISI 304 & AISI 316 Stainless Steel",
+      "Aesthetics": "RGB LED Remote Lights (IP68 Waterproof)",
+      "Accessories": "Ladders, Grab Rails, Fountain Nozzles",
+      "Corrosion Guarantee": "5-Year Rust Free Warranty"
+    }
+  },
+  {
+    title: "Boutique Pool Maintenance",
+    category: "Maintenance",
+    desc: "Annual maintenance contracts (AMC), water balancing, sanitization, and deep cleaning.",
+    longDesc: "Bespoke annual maintenance contracts (AMC) for commercial resort facilities and residential estates. Our certified pool operators manage weekly water chemistry audits, filter backwashing, system inspections, wall brushing, and automatic robotic vacuum cleaning.",
+    img: "https://images.unsplash.com/photo-1500333917452-484122b8b9e0?q=80&w=800",
+    pipeline: ["AMC Agreement", "Chemistry Auditing", "Deep Sanitization", "Equipment Tuning"],
+    specs: {
+      "Visit Frequency": "Weekly & Bi-Weekly Packages",
+      "Chemical Controls": "pH, Chlorine, Algaecide & Hardness Balancing",
+      "Upkeep Systems": "Robotic Wall Cleaners & Skimmer Maintenance",
+      "Emergency AMC": "24-Hour Callout Resolution"
+    }
+  },
+  {
+    title: "Modern Pool Renovation",
+    category: "Renovation",
+    desc: "Complete mosaic retiling, structural leak-proofing, and mechanical system restoration.",
+    longDesc: "We restore aged, leaking, or structurally failing pools back to pristine condition. Our team strips old mosaic tiles, repairs concrete degradation with pressure epoxy injections, replaces piping layouts, and upgrades mechanical systems with energy-efficient hardware.",
+    img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800",
+    pipeline: ["Demolition & Stripping", "Leak-Proof Coatings", "Tiling & Fitting", "System Commissioning"],
+    specs: {
+      "Renovations Offered": "Tiling, Plumbing & Deck Remodeling",
+      "Waterproofing Repair": "Crystalline Leak-Proof Polymer Coatings",
+      "Mechanicals Upgrade": "Energy-Efficient Variable Speed Pumps",
+      "Aesthetic Conversion": "Skimmer to Infinity Overflow Upgrade"
+    }
+  }
+];
+
+export default function ServicesPage() {
+  const [services, setServices] = useState(defaultServices);
+
+  useEffect(() => {
+    const fetchDynamicServices = async () => {
+      try {
+        const res = await fetch('/api/settings?key=services_items');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Array.isArray(data.value) && data.value.length > 0) {
+            setServices(data.value);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load dynamic services on services page:', err);
+      }
+    };
+    fetchDynamicServices();
+  }, []);
 
   return (
     <div>

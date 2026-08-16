@@ -91,7 +91,7 @@ export default function AdminLayout({ children }) {
     { name: 'Manage Catalog', path: '/admin/products', icon: '🛍️' },
     { name: 'Manage Portfolio', path: '/admin/projects', icon: '📷' },
     { name: 'Moderate Reviews', path: '/admin/testimonials', icon: '⭐' },
-    { name: 'Hero Settings', path: '/admin/settings', icon: '🖼️' },
+    { name: 'Site Content & Media', path: '/admin/settings', icon: '🖼️' },
   ];
 
   return (

@@ -1,62 +1,84 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+const defaultServices = [
+  {
+    title: "Pool Construction",
+    category: "Construction",
+    desc: "Heavy-duty concrete excavation, steel reinforcement, and structural shell casting.",
+    img: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=600"
+  },
+  {
+    title: "3D Pool Designing",
+    category: "Designing",
+    desc: "Custom architectural planning, 3D CAD modeling, and hydraulic system blueprints.",
+    img: "https://images.unsplash.com/photo-1503387762458-bf48293b1d30?q=80&w=600"
+  },
+  {
+    title: "Turnkey Facility Building",
+    category: "Building",
+    desc: "End-to-end commercial builders for resorts, waterparks, and competition pools.",
+    img: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=600"
+  },
+  {
+    title: "Filtration & Pipe Installing",
+    category: "Installing",
+    desc: "Precision plumbing, high-rate filtration plant, and automated chemical controls.",
+    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600"
+  },
+  {
+    title: "Structural Consulting",
+    category: "Consultant",
+    desc: "Expert soil testing, leak investigations, waterproofing planning, and site assessments.",
+    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600"
+  },
+  {
+    title: "Pool Equipment Supply",
+    category: "Equipment",
+    desc: "Direct B2B supply of heavy-duty commercial sand filters, pumps, and sanitization systems.",
+    img: "https://images.unsplash.com/photo-1622322428943-e11418701a30?q=80&w=600"
+  },
+  {
+    title: "Premium Accessories",
+    category: "Accessories",
+    desc: "High-quality stainless steel ladders, underwater LED lights, and custom water fountains.",
+    img: "https://images.unsplash.com/photo-1572331165267-854da2b10ccc?q=80&w=600"
+  },
+  {
+    title: "Boutique Pool Maintenance",
+    category: "Maintenance",
+    desc: "Annual maintenance contracts (AMC), water balancing, sanitization, and deep cleaning.",
+    img: "https://images.unsplash.com/photo-1500333917452-484122b8b9e0?q=80&w=600"
+  },
+  {
+    title: "Modern Pool Renovation",
+    category: "Renovation",
+    desc: "Complete mosaic retiling, structural leak-proofing, and mechanical system restoration.",
+    img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600"
+  }
+];
+
 export default function ServicesCatalog() {
-  const services = [
-    {
-      title: "Pool Construction",
-      category: "Construction",
-      desc: "Heavy-duty concrete excavation, steel reinforcement, and structural shell casting.",
-      img: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=600"
-    },
-    {
-      title: "3D Pool Designing",
-      category: "Designing",
-      desc: "Custom architectural planning, 3D CAD modeling, and hydraulic system blueprints.",
-      img: "https://images.unsplash.com/photo-1503387762458-bf48293b1d30?q=80&w=600"
-    },
-    {
-      title: "Turnkey Facility Building",
-      category: "Building",
-      desc: "End-to-end commercial builders for resorts, waterparks, and competition pools.",
-      img: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=600"
-    },
-    {
-      title: "Filtration & Pipe Installing",
-      category: "Installing",
-      desc: "Precision plumbing, high-rate filtration plant, and automated chemical controls.",
-      img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600"
-    },
-    {
-      title: "Structural Consulting",
-      category: "Consultant",
-      desc: "Expert soil testing, leak investigations, waterproofing planning, and site assessments.",
-      img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600"
-    },
-    {
-      title: "Pool Equipment Supply",
-      category: "Equipment",
-      desc: "Direct B2B supply of heavy-duty commercial sand filters, pumps, and sanitization systems.",
-      img: "https://images.unsplash.com/photo-1622322428943-e11418701a30?q=80&w=600"
-    },
-    {
-      title: "Premium Accessories",
-      category: "Accessories",
-      desc: "High-quality stainless steel ladders, underwater LED lights, and custom water fountains.",
-      img: "https://images.unsplash.com/photo-1572331165267-854da2b10ccc?q=80&w=600"
-    },
-    {
-      title: "Boutique Pool Maintenance",
-      category: "Maintenance",
-      desc: "Annual maintenance contracts (AMC), water balancing, sanitization, and deep cleaning.",
-      img: "https://images.unsplash.com/photo-1500333917452-484122b8b9e0?q=80&w=600"
-    },
-    {
-      title: "Modern Pool Renovation",
-      category: "Renovation",
-      desc: "Complete mosaic retiling, structural leak-proofing, and mechanical system restoration.",
-      img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600"
-    }
-  ];
+  const [services, setServices] = useState(defaultServices);
+
+  useEffect(() => {
+    const fetchDynamicServices = async () => {
+      try {
+        const res = await fetch('/api/settings?key=services_items');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Array.isArray(data.value) && data.value.length > 0) {
+            setServices(data.value);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load dynamic services in catalog:', err);
+      }
+    };
+    fetchDynamicServices();
+  }, []);
 
   return (
     <section className="section" style={{ background: 'linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-navy) 100%)', position: 'relative' }}>

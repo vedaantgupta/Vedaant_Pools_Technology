@@ -212,6 +212,18 @@ export default function ContactPage() {
                   className="form-input"
                   style={{ background: 'var(--bg-navy)' }}
                 >
+                  <option value="Residential & Private Swimming Pools">Residential & Private Swimming Pools</option>
+                  <option value="Farm House Swimming Pools">Farm House Swimming Pools</option>
+                  <option value="Resort & Hotel Pools">Resort & Hotel Pools</option>
+                  <option value="Institutional & Competition Pools">Institutional & Competition Pools</option>
+                  <option value="Overflow & Vanishing Edge Pools">Overflow & Vanishing Edge Pools</option>
+                  <option value="Water Bodies & Architectural Waterscapes">Water Bodies & Architectural Waterscapes</option>
+                  <option value="Outdoor Water Fountains">Outdoor Water Fountains</option>
+                  <option value="Musical & Dynamic Fountains">Musical & Dynamic Fountains</option>
+                  <option value="Waterparks & Splash Parks">Waterparks & Splash Parks</option>
+                  <option value="Steam Bath Suites">Steam Bath Suites</option>
+                  <option value="Finnish Sauna Rooms">Finnish Sauna Rooms</option>
+                  <option value="Hydrotherapy Jacuzzis & Hot Tubs">Hydrotherapy Jacuzzis & Hot Tubs</option>
                   <option value="Pool Construction">Pool Construction</option>
                   <option value="3D Pool Designing">3D Pool Designing</option>
                   <option value="Turnkey Facility Building">Turnkey Facility Building</option>
