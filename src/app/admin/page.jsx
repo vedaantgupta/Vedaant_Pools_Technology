@@ -65,7 +65,7 @@ export default function AdminDashboardPage() {
 
   // Delete Inquiry
   const handleDeleteInquiry = async (id) => {
-    if (!confirm('Are you sure you want to permanently delete this sourcing inquiry?')) return;
+    if (!confirm('Are you sure you want to permanently delete this inquiry?')) return;
     try {
       const res = await fetch(`/api/inquiries/${id}`, {
         method: 'DELETE'
@@ -101,7 +101,7 @@ export default function AdminDashboardPage() {
       {/* Title */}
       <div style={{ marginBottom: '40px' }}>
         <h1 style={{ fontSize: '32px', color: 'var(--text-white)' }}>Dashboard Overview</h1>
-        <p style={{ color: 'var(--text-gray)' }}>VPT Sourcing inquiries, catalog volume, and review statistics.</p>
+        <p style={{ color: 'var(--text-gray)' }}>VPT Customer inquiries, catalog volume, and review statistics.</p>
       </div>
 
       {/* Stats Cards Row */}

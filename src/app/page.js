@@ -5,7 +5,10 @@ import Product from '@/models/Product';
 import Testimonial from '@/models/Testimonial';
 import Setting from '@/models/Setting';
 import HeroSection from '@/components/HeroSection';
+import AboutQuickSection from '@/components/AboutQuickSection';
 import ServicesCatalog from '@/components/ServicesCatalog';
+import WhatWeBuildPreview from '@/components/WhatWeBuildPreview';
+import HomeStoreShowcase from '@/components/HomeStoreShowcase';
 
 // Next.js page is server-rendered by default
 export default async function Home() {
@@ -16,8 +19,8 @@ export default async function Home() {
 
   try {
     await dbConnect();
-    // Fetch products
-    featuredProducts = await Product.find({}).limit(4);
+    // Fetch products for store showcase
+    featuredProducts = await Product.find({}).lean();
     // Fetch approved testimonials
     testimonials = await Testimonial.find({ status: 'approved' }).limit(3);
 
@@ -63,94 +66,22 @@ export default async function Home() {
   return (
     <div style={{ position: 'relative' }}>
 
-      {/* ---------- Hero Section ---------- */}
+      {/* 1. Hero Section */}
       <HeroSection backgroundImages={heroBackgrounds} branding={siteBranding} />
 
-      {/* ---------- Services Catalog Section ---------- */}
+      {/* 2. About Organization Section */}
+      <AboutQuickSection />
+
+      {/* 3. Services Catalog Section */}
       <ServicesCatalog />
 
-      {/* ---------- Featured Products Showcase ---------- */}
-      <section className="section" style={{ background: 'var(--bg-navy)' }}>
-        <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '50px', flexWrap: 'wrap', gap: '20px' }}>
-            <div>
-              <h2 className="text-gradient" style={{ fontSize: '36px', marginBottom: '10px' }}>B2B Store Catalog</h2>
-              <p style={{ color: 'var(--text-gray)' }}>Direct distributor for pool maintenance and spa atmospheric systems.</p>
-            </div>
-            <Link href="/store" className="btn btn-secondary" style={{ padding: '10px 24px' }}>
-              View All Products
-            </Link>
-          </div>
+      {/* 4. What We Build Section (After Services) */}
+      <WhatWeBuildPreview />
 
-          {featuredProducts.length > 0 ? (
-            <div className="grid-4" style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '24px'
-            }}>
-              {featuredProducts.map((prod) => (
-                <div key={prod._id} className="glass-card" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                  <div style={{ height: '220px', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', position: 'relative' }}>
-                    <img
-                      src={prod.imageUrl}
-                      alt={prod.title}
-                      style={{
-                        maxWidth: '100%',
-                        maxHeight: '100%',
-                        objectFit: 'contain'
-                      }}
-                    />
-                    <span style={{
-                      position: 'absolute',
-                      top: '12px',
-                      left: '12px',
-                      background: 'var(--bg-navy)',
-                      border: '1px solid var(--border-glass)',
-                      color: 'var(--secondary-color)',
-                      fontSize: '11px',
-                      fontWeight: '700',
-                      padding: '4px 10px',
-                      borderRadius: '20px',
-                      textTransform: 'uppercase'
-                    }}>
-                      {prod.category}
-                    </span>
-                  </div>
-                  <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <h3 style={{ fontSize: '16px', margin: '0 0 10px 0', minHeight: '44px', color: 'var(--text-white)' }}>
-                      {prod.title}
-                    </h3>
-                    <div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                        <span style={{ fontSize: '18px', fontWeight: '800', color: 'var(--accent-color)' }}>
-                          {prod.price ? `₹${prod.price.toLocaleString()}` : 'Custom Price'}
-                        </span>
-                        <Link href={`/store/${prod._id}`} style={{
-                          fontSize: '13px',
-                          color: 'var(--text-white)',
-                          borderBottom: '1px solid var(--secondary-color)',
-                          fontWeight: '600'
-                        }}>
-                          Specs Sheet
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div style={{ textAlign: 'center', padding: '40px 0' }}>
-              <p style={{ color: 'var(--text-gray)' }}>No catalog items found. Set up database or log in as Admin to add items.</p>
-              <Link href="/admin" className="btn btn-primary" style={{ marginTop: '16px' }}>
-                Add Products
-              </Link>
-            </div>
-          )}
-        </div>
-      </section>
+      {/* 5. Upgraded B2B Store & Equipment Showcase */}
+      <HomeStoreShowcase initialProducts={JSON.parse(JSON.stringify(featuredProducts))} />
 
-      {/* ---------- Testimonials Section ---------- */}
+      {/* 6. Testimonials Section */}
       <section className="section">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '60px' }}>

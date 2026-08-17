@@ -77,7 +77,7 @@ export default function CheckoutPage() {
           <span style={{ fontSize: '64px', display: 'block', marginBottom: '20px' }}>🎉</span>
           <h1 className="text-gradient" style={{ fontSize: '32px', marginBottom: '16px' }}>Inquiry Submitted!</h1>
           <p style={{ color: 'var(--text-gray)', marginBottom: '30px', lineHeight: '1.7' }}>
-            Thank you! Your quotation request has been securely saved in our database. Founder <strong>Yogendra Gupta</strong> or a B2B representative from our Nanda Nagar correspondence office will email/call you shortly with an official price sheet.
+            Thank you! Your quotation request has been securely saved in our database. Founder <strong>Yogendra Gupta</strong> or our technical representative will email/call you shortly with an official price sheet.
           </p>
           <Link href="/store" className="btn btn-accent">
             Back to Product Store
@@ -179,7 +179,7 @@ export default function CheckoutPage() {
                 style={{ width: '100%', padding: '14px 0' }}
                 disabled={status.loading}
               >
-                {status.loading ? 'Submitting Sourcing Inquiry...' : 'Submit Official Quote Request'}
+                {status.loading ? 'Submitting Quote Request...' : 'Submit Official Quote Request'}
               </button>
 
               {status.error && (

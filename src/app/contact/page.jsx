@@ -125,30 +125,63 @@ export default function ContactPage() {
 
         {/* Contact Info Grid */}
         <div className="grid-3" style={{ marginBottom: '80px', gap: '24px' }}>
-          <div className="glass-card" style={{ padding: '24px', textAlign: 'center' }}>
+          <div className="glass-card" style={{ padding: '28px 24px', textAlign: 'center' }}>
             <span style={{ fontSize: '32px', display: 'block', marginBottom: '12px' }}>📞</span>
-            <h3 style={{ fontSize: '18px', color: 'var(--text-white)', marginBottom: '8px' }}>B2B Wholesale Hotline</h3>
-            <p style={{ fontSize: '18px', fontWeight: '700', color: 'var(--secondary-color)', marginBottom: '4px' }}>
-              +91-8043862448
-            </p>
-            <p style={{ fontSize: '14px', color: 'var(--text-gray)' }}>Alternative: +91 9479940047</p>
+            <h3 style={{ fontSize: '18px', color: 'var(--text-white)', marginBottom: '10px' }}>Call & Inquiries</h3>
+            <a
+              href="tel:+919479940047"
+              style={{
+                fontSize: '18px',
+                fontWeight: '700',
+                color: 'var(--secondary-color)',
+                display: 'block',
+                marginBottom: '4px'
+              }}
+            >
+              +91-9479940047
+            </a>
+            <a
+              href="tel:+919827841047"
+              style={{
+                fontSize: '15px',
+                color: 'var(--text-light)',
+                fontWeight: '600',
+                display: 'block',
+                marginBottom: '6px'
+              }}
+            >
+              +91-9827841047
+            </a>
+            <a
+              href="mailto:vedaantpools@gmail.com"
+              style={{
+                fontSize: '13px',
+                color: 'var(--accent-color)',
+                fontWeight: '600',
+                display: 'block'
+              }}
+            >
+              ✉️ vedaantpools@gmail.com
+            </a>
           </div>
 
-          <div className="glass-card" style={{ padding: '24px', textAlign: 'center' }}>
+          <div className="glass-card" style={{ padding: '28px 24px', textAlign: 'center' }}>
+            <span style={{ fontSize: '32px', display: 'block', marginBottom: '12px' }}>📍</span>
+            <h3 style={{ fontSize: '18px', color: 'var(--text-white)', marginBottom: '10px' }}>Office Address</h3>
+            <p style={{ fontSize: '14px', color: 'var(--text-light)', lineHeight: '1.6', margin: 0 }}>
+              House No. L-1, Vandana Vihar,<br />
+              Bhangarh Road, Indore, MP, India
+            </p>
+          </div>
+
+          <div className="glass-card" style={{ padding: '28px 24px', textAlign: 'center' }}>
             <span style={{ fontSize: '32px', display: 'block', marginBottom: '12px' }}>🏢</span>
-            <h3 style={{ fontSize: '18px', color: 'var(--text-white)', marginBottom: '8px' }}>Registered Head Office</h3>
-            <p style={{ fontSize: '14px', color: 'var(--text-gray)', lineHeight: '1.6' }}>
-              House No L-1, Vandana Vihar Colony Road,<br />
-              Bhangarh, Indore, MP, India
+            <h3 style={{ fontSize: '18px', color: 'var(--text-white)', marginBottom: '10px' }}>Business Verification</h3>
+            <p style={{ fontSize: '14px', color: 'var(--text-light)', lineHeight: '1.6', margin: '0 0 4px 0' }}>
+              GSTIN: <strong style={{ color: 'var(--secondary-color)' }}>23AGZPG1057G1ZD</strong>
             </p>
-          </div>
-
-          <div className="glass-card" style={{ padding: '24px', textAlign: 'center' }}>
-            <span style={{ fontSize: '32px', display: 'block', marginBottom: '12px' }}>✉️</span>
-            <h3 style={{ fontSize: '18px', color: 'var(--text-white)', marginBottom: '8px' }}>Correspondence Office</h3>
-            <p style={{ fontSize: '14px', color: 'var(--text-gray)', lineHeight: '1.6' }}>
-              450/3, Nanda Nagar,<br />
-              Indore - 452003, MP, India
+            <p style={{ fontSize: '13px', color: 'var(--text-gray)', margin: 0 }}>
+              Mon – Sat: 9:00 AM – 8:00 PM
             </p>
           </div>
         </div>

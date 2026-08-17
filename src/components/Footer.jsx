@@ -59,37 +59,51 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* B2B Hotline */}
+          {/* Contact & Address */}
           <div>
-            <h4 className="footer-title">Central India B2B Sourcing</h4>
-            <p style={{ marginBottom: '12px' }}>Registered Office: Bhangarh, Indore, MP</p>
-            <p style={{ marginBottom: '16px' }}>Correspondence: 450/3, Nanda Nagar, Indore, MP</p>
-            <p style={{ color: 'var(--text-white)', fontWeight: '700', fontSize: '15px' }}>
-              📞 Sourcing Hotline:
+            <h4 className="footer-title">Contact & Location</h4>
+            <p style={{ marginBottom: '12px', color: 'var(--text-gray)', fontSize: '13.5px', lineHeight: '1.6' }}>
+              📍 House No. L-1, Vandana Vihar, Bhangarh Road, Indore, Madhya Pradesh
+            </p>
+            <p style={{ color: 'var(--text-white)', fontWeight: '700', fontSize: '14px', marginTop: '14px', marginBottom: '4px' }}>
+              📞 Contact Numbers:
             </p>
             <a
-              href="tel:+918043862448"
+              href="tel:+919479940047"
               style={{
-                fontSize: '18px',
+                fontSize: '17px',
                 fontWeight: '700',
                 color: 'var(--secondary-color)',
                 display: 'block',
                 marginTop: '4px',
               }}
             >
-              +91-8043862448
+              +91-9479940047
             </a>
             <a
-              href="tel:+919479940047"
+              href="tel:+919827841047"
               style={{
-                fontSize: '16px',
+                fontSize: '15px',
                 fontWeight: '600',
                 color: 'var(--text-light)',
                 display: 'block',
-                marginTop: '4px',
+                marginTop: '2px',
               }}
             >
-              Alternative: +91 9479940047
+              +91-9827841047
+            </a>
+            <a
+              href="mailto:vedaantpools@gmail.com"
+              style={{
+                fontSize: '14px',
+                fontWeight: '600',
+                color: 'var(--accent-color)',
+                display: 'block',
+                marginTop: '10px',
+                wordBreak: 'break-all'
+              }}
+            >
+              ✉️ vedaantpools@gmail.com
             </a>
           </div>
         </div>

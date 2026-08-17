@@ -228,9 +228,8 @@ const defaultAboutContent = {
   establishedYear: "2018",
   domainExperience: "15+ Yrs",
   tradeRating: "5.0 ★",
-  waterproofingGuarantee: "10-Yr",
-  headOfficeAddress: "House No L-1, Vandana Vihar Colony Road, Bhangarh, Indore, Madhya Pradesh, India",
-  correspondenceAddress: "450/3, Nanda Nagar, Indore - 452003, Madhya Pradesh, India",
+  officeAddress: "House No. L-1, Vandana Vihar, Bhangarh Road, Indore, Madhya Pradesh, India",
+  phoneNumbers: "+91-9479940047 / +91-9827841047",
   gstin: "23AGZPG1057G1ZD",
   founderBio: "Under the visionary leadership of Yogendra Gupta, Vedaant Pools Technology has established itself as the most reliable aquatic partner in Central India. Mr. Gupta brings deep technical expertise in structural concrete behaviour, soil load bearing, and high-pressure pool hydraulics. Unlike generic contractors, our founder personally supervises site layout planning, reinforcement steel grid inspections, and filtration plant pressure calibrations."
 };

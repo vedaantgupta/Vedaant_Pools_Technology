@@ -56,7 +56,9 @@ export default function AboutPage() {
     { label: "GSTIN Registry", value: "23AGZPG1057G1ZD (Madhya Pradesh)" },
     { label: "Year of Establishment", value: "2018 (Leadership with 15+ Yrs Domain Experience)" },
     { label: "Primary Service Area", value: "Indore, Madhya Pradesh & Central India" },
-    { label: "B2B Sourcing Hotline", value: "+91-8043862448 / +91-9479940047" },
+    { label: "Contact Numbers", value: "+91-9479940047 / +91-9827841047" },
+    { label: "Official Email", value: "vedaantpools@gmail.com" },
+    { label: "Office Address", value: "House No. L-1, Vandana Vihar, Bhangarh Road, Indore, MP" },
     { label: "Public Sentiment", value: "5.0 ★ Local Track Record on Industry Portals" }
   ];
 
@@ -234,7 +236,7 @@ export default function AboutPage() {
                 ✓ Turnkey Hydraulic Design
               </span>
               <span style={{ fontSize: '12.5px', background: 'rgba(0, 210, 255, 0.08)', color: 'var(--secondary-color)', padding: '6px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0, 210, 255, 0.2)', fontWeight: '600' }}>
-                ✓ Commercial B2B Sourcing
+                ✓ Commercial Equipment Supply
               </span>
             </div>
           </div>
@@ -371,18 +373,18 @@ export default function AboutPage() {
                   fontSize: '24px',
                   flexShrink: 0
                 }}>
-                  🏢
+                  📍
                 </div>
                 <div>
                   <h3 style={{ fontSize: '19px', color: 'var(--text-white)', marginBottom: '8px' }}>
-                    Registered Head Office
+                    Office & Workshop Location
                   </h3>
                   <p style={{ color: 'var(--text-gray)', fontSize: '14.5px', lineHeight: '1.7', marginBottom: '12px' }}>
-                    House No L-1, Vandana Vihar Colony Road,<br />
-                    Bhangarh, Indore, Madhya Pradesh, India
+                    House No. L-1, Vandana Vihar,<br />
+                    Bhangarh Road, Indore, Madhya Pradesh, India
                   </p>
                   <span style={{ display: 'inline-block', fontSize: '12px', color: 'var(--secondary-color)', fontWeight: '600', background: 'rgba(0, 210, 255, 0.06)', padding: '4px 10px', borderRadius: '4px' }}>
-                    Turnkey Billing, Structural Engineering & Consultations
+                    Turnkey Construction, Engineering Consultations & Equipment Supply
                   </span>
                 </div>
               </div>
@@ -402,18 +404,19 @@ export default function AboutPage() {
                   fontSize: '24px',
                   flexShrink: 0
                 }}>
-                  ✉️
+                  📞
                 </div>
                 <div>
                   <h3 style={{ fontSize: '19px', color: 'var(--text-white)', marginBottom: '8px' }}>
-                    Commercial Correspondence Office
+                    Direct Contacts & Hours
                   </h3>
                   <p style={{ color: 'var(--text-gray)', fontSize: '14.5px', lineHeight: '1.7', marginBottom: '12px' }}>
-                    450/3, Nanda Nagar,<br />
-                    Indore - 452003, Madhya Pradesh, India
+                    Phone: <strong style={{ color: 'var(--secondary-color)' }}>+91-9479940047</strong> / <strong style={{ color: 'var(--text-white)' }}>+91-9827841047</strong><br />
+                    Email: <a href="mailto:vedaantpools@gmail.com" style={{ color: 'var(--accent-color)', fontWeight: '600' }}>vedaantpools@gmail.com</a><br />
+                    Working Hours: Mon – Sat: 9:00 AM – 8:00 PM
                   </p>
                   <span style={{ display: 'inline-block', fontSize: '12px', color: 'var(--secondary-color)', fontWeight: '600', background: 'rgba(0, 210, 255, 0.06)', padding: '4px 10px', borderRadius: '4px' }}>
-                    B2B Wholesale Dispatch & Hardware Stockyard
+                    GSTIN Verified: 23AGZPG1057G1ZD
                   </span>
                 </div>
               </div>
