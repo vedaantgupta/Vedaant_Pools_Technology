@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 const defaultServices = [
@@ -62,6 +62,8 @@ const defaultServices = [
 
 export default function ServicesCatalog() {
   const [services, setServices] = useState(defaultServices);
+  const [isGridView, setIsGridView] = useState(false);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     const fetchDynamicServices = async () => {
@@ -80,113 +82,322 @@ export default function ServicesCatalog() {
     fetchDynamicServices();
   }, []);
 
+  // Slide navigation
+  const slideLeft = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: -360, behavior: 'smooth' });
+    }
+  };
+
+  const slideRight = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: 360, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="section" style={{ background: 'linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-navy) 100%)', position: 'relative' }}>
+    <section className="section" style={{ background: 'linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-navy) 100%)', position: 'relative', overflow: 'hidden' }}>
       {/* Decorative background glows */}
       <div style={{
         position: 'absolute',
         top: '10%',
         left: '5%',
-        width: '350px',
-        height: '350px',
+        width: '400px',
+        height: '400px',
         borderRadius: '50%',
-        background: 'rgba(0, 210, 255, 0.04)',
-        filter: 'blur(80px)',
+        background: 'rgba(0, 210, 255, 0.05)',
+        filter: 'blur(90px)',
         pointerEvents: 'none'
       }} />
       <div style={{
         position: 'absolute',
         bottom: '15%',
         right: '5%',
-        width: '400px',
-        height: '400px',
+        width: '450px',
+        height: '450px',
         borderRadius: '50%',
-        background: 'rgba(11, 94, 221, 0.04)',
+        background: 'rgba(11, 94, 221, 0.06)',
         filter: 'blur(100px)',
         pointerEvents: 'none'
       }} />
 
-      <div className="container">
-        {/* Section Header */}
-        <div className="services-section-title" style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <h2 className="text-gradient" style={{ fontSize: '42px', fontWeight: '800', marginBottom: '8px', letterSpacing: '-0.02em' }}>
-            Our Services
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+        
+        {/* Section Header (Center Aligned) */}
+        <div style={{ textAlign: 'center', marginBottom: '45px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--secondary-color)', boxShadow: '0 0 8px var(--secondary-color)' }} />
+            <span className="accent-gradient" style={{
+              fontSize: '12.5px',
+              fontWeight: '800',
+              textTransform: 'uppercase',
+              letterSpacing: '2px'
+            }}>
+              TURNKEY AQUATIC ENGINEERING
+            </span>
+          </div>
+
+          <h2 className="text-gradient" style={{ fontSize: '40px', fontWeight: '800', margin: '0 0 10px 0', letterSpacing: '-0.02em' }}>
+            Our Turnkey Services
           </h2>
           <div style={{
             width: '70px',
             height: '4px',
             background: 'linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%)',
-            margin: '12px auto 24px auto',
+            margin: '0 auto 16px auto',
             borderRadius: '2px',
             boxShadow: '0 0 10px rgba(0, 210, 255, 0.4)'
           }} />
-          <p style={{ color: 'var(--text-gray)', maxWidth: '650px', margin: '0 auto', fontSize: '16px', lineHeight: '1.6' }}>
-            We design, construct, equip, and maintain premium aquatic infrastructures. Select a service below to request a site inspection and price quote.
+          <p style={{ color: 'var(--text-gray)', maxWidth: '680px', margin: '0 auto', fontSize: '15.5px', lineHeight: '1.6' }}>
+            From 3D architectural blueprints and monolithic concrete casting to high-rate filtration plant setups and leak-proof waterproofing.
           </p>
         </div>
 
-        {/* Services Grid (3 columns on desktop, responsive) */}
-        <div className="services-catalog-grid">
-          {services.map((service, idx) => {
-            const querySubject = encodeURIComponent(service.title);
-            const queryMessage = encodeURIComponent(`Hi VPT Team, I am looking to get a price quote and details for the "${service.title}" service. Please contact me with more information.`);
-            const inquiryUrl = `/contact?subject=${querySubject}&message=${queryMessage}`;
+        {/* Carousel / Slider Container with Middle Floating Navigation Buttons */}
+        <div style={{ position: 'relative', margin: '0 -10px' }}>
+          
+          {/* Middle Left Arrow Button (visible in slider mode) */}
+          {!isGridView && (
+            <button
+              onClick={slideLeft}
+              aria-label="Slide Left"
+              style={{
+                position: 'absolute',
+                top: '45%',
+                left: '-16px',
+                transform: 'translateY(-50%)',
+                zIndex: 15,
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
+                background: 'rgba(5, 19, 41, 0.92)',
+                border: '1.5px solid var(--secondary-color)',
+                color: 'var(--secondary-color)',
+                fontSize: '22px',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 210, 255, 0.3)',
+                transition: 'all 0.25s ease',
+                backdropFilter: 'blur(10px)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+                e.currentTarget.style.background = 'var(--secondary-color)';
+                e.currentTarget.style.color = '#051329';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+                e.currentTarget.style.background = 'rgba(5, 19, 41, 0.92)';
+                e.currentTarget.style.color = 'var(--secondary-color)';
+              }}
+            >
+              &#10094;
+            </button>
+          )}
 
-            return (
-              <div key={idx} className="service-card-premium">
-                {/* Image Container with Badge */}
-                <div className="service-image-container">
-                  <span className="service-card-badge-overlay">
-                    {service.category}
-                  </span>
-                  <img
-                    src={service.img}
-                    alt={service.title}
-                    className="service-image-zoom"
-                    loading="lazy"
-                  />
-                </div>
+          {/* Middle Right Arrow Button (visible in slider mode) */}
+          {!isGridView && (
+            <button
+              onClick={slideRight}
+              aria-label="Slide Right"
+              style={{
+                position: 'absolute',
+                top: '45%',
+                right: '-16px',
+                transform: 'translateY(-50%)',
+                zIndex: 15,
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
+                background: 'rgba(5, 19, 41, 0.92)',
+                border: '1.5px solid var(--secondary-color)',
+                color: 'var(--secondary-color)',
+                fontSize: '22px',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 210, 255, 0.3)',
+                transition: 'all 0.25s ease',
+                backdropFilter: 'blur(10px)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+                e.currentTarget.style.background = 'var(--secondary-color)';
+                e.currentTarget.style.color = '#051329';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+                e.currentTarget.style.background = 'rgba(5, 19, 41, 0.92)';
+                e.currentTarget.style.color = 'var(--secondary-color)';
+              }}
+            >
+              &#10095;
+            </button>
+          )}
 
-                {/* Card Body */}
-                <div className="service-card-body">
-                  <div className="service-card-header" style={{ marginBottom: '24px' }}>
-                    <h3 className="service-card-heading" style={{ fontSize: '20px', marginBottom: '8px' }}>
-                      {service.title}
-                    </h3>
-                    <p className="service-card-subheading" style={{ fontSize: '13.5px', minHeight: '40px' }}>
-                      {service.desc}
-                    </p>
+          {/* Cards Track: Slider View (Default) or Expanded Full Grid */}
+          <div
+            ref={sliderRef}
+            style={
+              isGridView
+                ? {
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+                    gap: '24px',
+                    padding: '10px',
+                    transition: 'all 0.3s ease'
+                  }
+                : {
+                    display: 'flex',
+                    gap: '24px',
+                    overflowX: 'auto',
+                    scrollSnapType: 'x mandatory',
+                    padding: '10px 14px 20px 14px',
+                    scrollbarWidth: 'none',
+                    msOverflowStyle: 'none',
+                    scrollBehavior: 'smooth'
+                  }
+            }
+          >
+            {services.map((service, idx) => {
+              const querySubject = encodeURIComponent(service.title);
+              const queryMessage = encodeURIComponent(`Hi VPT Team, I am looking to get a price quote and site inspection for the "${service.title}" service. Please contact me.`);
+              const inquiryUrl = `/contact?subject=${querySubject}&message=${queryMessage}`;
+
+              return (
+                <div
+                  key={idx}
+                  className="service-card-premium glass-card"
+                  style={{
+                    ...(isGridView
+                      ? { width: '100%' }
+                      : { minWidth: '320px', maxWidth: '350px', flex: '0 0 auto', scrollSnapAlign: 'start' }),
+                    display: 'flex',
+                    flexDirection: 'column',
+                    overflow: 'hidden',
+                    borderRadius: '18px',
+                    background: 'var(--bg-glass)',
+                    border: '1px solid var(--border-glass)',
+                    transition: 'transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease'
+                  }}
+                >
+                  {/* Image Container with Badge */}
+                  <div style={{ height: '210px', position: 'relative', overflow: 'hidden', background: '#051329' }}>
+                    <span style={{
+                      position: 'absolute',
+                      top: '12px',
+                      left: '12px',
+                      zIndex: 3,
+                      background: 'rgba(5, 19, 41, 0.85)',
+                      border: '1px solid rgba(0, 210, 255, 0.4)',
+                      color: 'var(--secondary-color)',
+                      fontSize: '11px',
+                      fontWeight: '700',
+                      padding: '4px 10px',
+                      borderRadius: '20px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}>
+                      {service.category}
+                    </span>
+                    <img
+                      src={service.img}
+                      alt={service.title}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        transition: 'transform 0.5s ease'
+                      }}
+                      loading="lazy"
+                      onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.08)'}
+                      onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                    />
                   </div>
 
-                  {/* Pricing and Action */}
-                  <div className="service-card-pricing-section" style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '16px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                      <span className="service-card-price-label" style={{ fontSize: '12px' }}>Estimate</span>
-                      <span className="service-card-price-amount" style={{ fontSize: '15px' }}>Request for Price</span>
+                  {/* Card Body */}
+                  <div style={{ padding: '22px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <div>
+                      <h3 style={{ fontSize: '19px', fontWeight: '700', color: 'var(--text-white)', margin: '0 0 8px 0', lineHeight: '1.3' }}>
+                        {service.title}
+                      </h3>
+                      <p style={{ fontSize: '13.5px', color: 'var(--text-gray)', lineHeight: '1.6', margin: '0 0 18px 0', minHeight: '44px' }}>
+                        {service.desc}
+                      </p>
                     </div>
 
-                    <Link href={inquiryUrl} className="service-card-action-btn" style={{ padding: '10px 20px', fontSize: '13px' }}>
-                      Enquire Now
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                    {/* Action Section */}
+                    <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div>
+                        <span style={{ fontSize: '11px', color: 'var(--text-muted)', display: 'block', textTransform: 'uppercase' }}>Estimate</span>
+                        <span style={{ fontSize: '13.5px', fontWeight: '700', color: 'var(--accent-color)' }}>Request Quote</span>
+                      </div>
+
+                      <Link
+                        href={inquiryUrl}
+                        className="btn btn-primary"
+                        style={{ padding: '8px 18px', fontSize: '13px', borderRadius: 'var(--radius-sm)' }}
                       >
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                      </svg>
-                    </Link>
+                        Enquire Now &rarr;
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
+
+        {/* Bottom Center Options: View More / View Less Toggle + Services Page Link */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '16px',
+          marginTop: '45px',
+          flexWrap: 'wrap'
+        }}>
+          {/* View More / View Less Toggle Button */}
+          <button
+            onClick={() => setIsGridView(!isGridView)}
+            className="btn btn-secondary"
+            style={{
+              padding: '13px 28px',
+              fontSize: '14.5px',
+              borderRadius: 'var(--radius-sm)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              fontWeight: '700',
+              cursor: 'pointer'
+            }}
+          >
+            {isGridView ? '▲ View Less (Slider View)' : `▼ View More Services (${services.length}+ All Services)`}
+          </button>
+
+          {/* Dedicated Services Page Link */}
+          <Link
+            href="/services"
+            className="btn btn-primary"
+            style={{
+              padding: '13px 32px',
+              fontSize: '14.5px',
+              borderRadius: 'var(--radius-sm)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              fontWeight: '700'
+            }}
+          >
+            Explore Full Services Page &rarr;
+          </Link>
+        </div>
+
       </div>
     </section>
   );
