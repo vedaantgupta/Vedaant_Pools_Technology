@@ -173,13 +173,13 @@ export default function HeroSection({ backgroundImages, branding }) {
             {/* Custom stylized logo text */}
             <div style={{ marginBottom: '20px' }}>
               <div style={{
-                fontSize: 'calc(1.6rem + 1vw)',
+                fontSize: 'clamp(28px, 4vw, 40px)',
                 fontWeight: '900',
                 fontFamily: 'var(--font-title)',
                 letterSpacing: '0.02em',
                 display: 'inline-flex',
                 flexWrap: 'wrap',
-                alignItems: 'center',
+                alignItems: 'baseline',
                 lineHeight: '1.2',
                 textTransform: 'uppercase'
               }}>
@@ -189,17 +189,19 @@ export default function HeroSection({ backgroundImages, branding }) {
                   paddingBottom: '5px',
                   marginRight: '12px'
                 }}>
-                  {/* Red V with glow and border */}
+                  {/* Red V set to 45px */}
                   <span style={{
                     color: '#ef4444',
                     fontWeight: '900',
-                    fontSize: '1.05em',
+                    fontSize: '45px',
                     textShadow: '0 0 10px rgba(239, 68, 68, 0.6), 0 0 20px rgba(239, 68, 68, 0.3), 0 2px 4px rgba(0,0,0,0.6)',
                     WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.15)'
                   }}>V</span>
-                  {/* EDAANT with blue glow and border */}
+                  {/* EDAANT set to 40px */}
                   <span style={{
                     color: '#4460f1',
+                    fontSize: '40px',
+                    fontWeight: '900',
                     textShadow: '0 0 10px rgba(68, 96, 241, 0.6), 0 0 20px rgba(68, 96, 241, 0.3), 0 2px 4px rgba(0,0,0,0.6)',
                     WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.15)'
                   }}>EDAANT</span>
@@ -216,9 +218,11 @@ export default function HeroSection({ backgroundImages, branding }) {
                   }} />
                 </span>
 
-                {/* POOLS TECHNOLOGY with blue glow and border */}
+                {/* POOLS TECHNOLOGY set to 40px */}
                 <span style={{
                   color: '#4460f1',
+                  fontSize: '40px',
+                  fontWeight: '900',
                   textShadow: '0 0 10px rgba(68, 96, 241, 0.6), 0 0 20px rgba(68, 96, 241, 0.3), 0 2px 4px rgba(0,0,0,0.6)',
                   WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.15)'
                 }}>

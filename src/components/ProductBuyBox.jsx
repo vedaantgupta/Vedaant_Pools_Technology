@@ -48,7 +48,7 @@ export default function ProductBuyBox({ product }) {
   };
 
   // WhatsApp instant quote query
-  const whatsappUrl = `https://wa.me/919981504959?text=${encodeURIComponent(`Hello Yogendra Gupta (Vedaant Pools), I would like to request an instant quote for: "${product.title}" (Qty: ${quantity}). Please share bulk pricing and delivery terms.`)}`;
+  const whatsappUrl = `https://wa.me/919479940047?text=${encodeURIComponent(`Hello Yogendra Gupta (Vedaant Pools), I would like to request an instant quote for: "${product.title}" (Qty: ${quantity}). Please share bulk pricing and delivery terms.`)}`;
 
   return (
     <div className="product-buybox-card glass-card">

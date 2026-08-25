@@ -143,14 +143,15 @@ export default function WhatWeBuildPage() {
           <span className="accent-gradient" style={{
             fontSize: '13px',
             fontWeight: '700',
+            color: '#00d2ff',
             textTransform: 'uppercase',
             letterSpacing: '3px',
             display: 'inline-block',
             marginBottom: '12px',
-            padding: '4px 14px',
-            background: 'rgba(0, 210, 255, 0.06)',
+            padding: '6px 16px',
+            background: 'rgba(0, 210, 255, 0.12)',
             borderRadius: '20px',
-            border: '1px solid rgba(0, 210, 255, 0.15)'
+            border: '1px solid rgba(0, 210, 255, 0.3)'
           }}>
             Turnkey Construction Portfolio
           </span>

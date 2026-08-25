@@ -1,24 +1,12 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  const [showNotificationBadge, setShowNotificationBadge] = useState(false);
 
   const phoneNumber = "919479940047";
   const altPhoneNumber = "919827841047";
-
-  // Prompt a subtle notification badge after a few seconds on the page to attract attention
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!hasInteracted) {
-        setShowNotificationBadge(true);
-      }
-    }, 4000);
-    return () => clearTimeout(timer);
-  }, [hasInteracted]);
 
   const quickPrompts = [
     {
@@ -45,8 +33,6 @@ export default function WhatsAppButton() {
     );
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank', 'noopener,noreferrer');
     setIsOpen(false);
-    setShowNotificationBadge(false);
-    setHasInteracted(true);
   };
 
   const handleCall = () => {
@@ -265,11 +251,7 @@ export default function WhatsAppButton() {
 
       {/* ---------- Floating Trigger Button ---------- */}
       <button
-        onClick={() => {
-          setIsOpen(!isOpen);
-          setShowNotificationBadge(false);
-          setHasInteracted(true);
-        }}
+        onClick={() => setIsOpen(!isOpen)}
         aria-label="Contact on WhatsApp"
         style={{
           width: '60px',
@@ -301,30 +283,7 @@ export default function WhatsAppButton() {
           <path d="M16 .5C7.44.5.5 7.44.5 16c0 2.73.71 5.3 1.95 7.54L.5 31.5l8.21-1.92A15.4 15.4 0 0 0 16 31.5c8.56 0 15.5-6.94 15.5-15.5S24.56.5 16 .5zm0 28.37c-2.39 0-4.66-.63-6.64-1.74l-.48-.27-4.88 1.14 1.16-4.75-.31-.5A12.87 12.87 0 0 1 3.13 16C3.13 8.9 8.9 3.13 16 3.13S28.87 8.9 28.87 16 23.1 28.87 16 28.87zm7.65-9.6c-.42-.21-2.48-1.22-2.86-1.36-.39-.14-.67-.21-.95.21-.28.42-1.09 1.36-1.33 1.64-.25.28-.49.32-.91.11-.42-.21-1.78-.66-3.39-2.1-1.25-1.12-2.1-2.5-2.34-2.92-.25-.42-.03-.65.18-.86.19-.19.42-.49.63-.74.21-.25.28-.42.42-.7.14-.28.07-.53-.04-.74-.1-.21-.95-2.29-1.3-3.14-.34-.83-.69-.72-.95-.73-.25-.01-.53-.01-.81-.01s-.74.1-1.13.53c-.39.42-1.48 1.45-1.48 3.53s1.52 4.09 1.73 4.37c.21.28 2.99 4.56 7.24 6.4 1.01.44 1.8.7 2.41.9.1.03.2.06.31.09.9.29 1.73.25 2.38.15.73-.11 2.25-.92 2.57-1.81.32-.88.32-1.64.22-1.81-.09-.15-.36-.25-.78-.46z" />
         </svg>
 
-        {/* Attention Badge / Dot */}
-        {showNotificationBadge && (
-          <span
-            style={{
-              position: 'absolute',
-              top: '-2px',
-              right: '-2px',
-              width: '16px',
-              height: '16px',
-              borderRadius: '50%',
-              background: '#ef4444',
-              border: '2px solid #ffffff',
-              color: '#ffffff',
-              fontSize: '9px',
-              fontWeight: 'bold',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              animation: 'bounce 1s infinite'
-            }}
-          >
-            1
-          </span>
-        )}
+
       </button>
 
       {/* Embedded CSS Keyframes for WhatsApp Pulse and Animations */}

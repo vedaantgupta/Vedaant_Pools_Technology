@@ -13,9 +13,11 @@ export default function AdminProductsPage() {
     title: '',
     category: 'Sanitation & Upkeep',
     price: '',
+    mrp: '',
     description: '',
     imageUrl: '',
-    featured: false
+    featured: false,
+    isEssential: false
   });
   
   // Specifications List (Key-Value array for UI management)
@@ -104,6 +106,7 @@ export default function AdminProductsPage() {
     const payload = {
       ...formData,
       price: formData.price ? parseFloat(formData.price) : undefined,
+      mrp: formData.mrp ? parseFloat(formData.mrp) : undefined,
       specs: serializeSpecs()
     };
 
@@ -135,9 +138,11 @@ export default function AdminProductsPage() {
       title: prod.title,
       category: prod.category,
       price: prod.price || '',
+      mrp: prod.mrp || '',
       description: prod.description || '',
       imageUrl: prod.imageUrl,
-      featured: prod.featured || false
+      featured: prod.featured || false,
+      isEssential: prod.isEssential || false
     });
     setSpecsList(deserializeSpecs(prod.specs));
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -163,9 +168,11 @@ export default function AdminProductsPage() {
       title: '',
       category: 'Sanitation & Upkeep',
       price: '',
+      mrp: '',
       description: '',
       imageUrl: '',
-      featured: false
+      featured: false,
+      isEssential: false
     });
     setSpecsList([{ key: '', value: '' }]);
   };
@@ -200,7 +207,7 @@ export default function AdminProductsPage() {
               />
             </div>
 
-            <div className="form-group" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '15px' }}>
+            <div className="form-group" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '15px' }}>
               <div>
                 <label className="form-label">Category</label>
                 <select
@@ -214,14 +221,25 @@ export default function AdminProductsPage() {
                 </select>
               </div>
               <div>
-                <label className="form-label">Price in ₹</label>
+                <label className="form-label">Sale Price ₹</label>
                 <input
                   type="number"
                   name="price"
                   value={formData.price}
                   onChange={handleChange}
                   className="form-input"
-                  placeholder="Price"
+                  placeholder="Selling Price"
+                />
+              </div>
+              <div>
+                <label className="form-label">MRP Price ₹</label>
+                <input
+                  type="number"
+                  name="mrp"
+                  value={formData.mrp}
+                  onChange={handleChange}
+                  className="form-input"
+                  placeholder="Original MRP"
                 />
               </div>
             </div>
@@ -239,18 +257,34 @@ export default function AdminProductsPage() {
               />
             </div>
 
-            <div className="form-group" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <input
-                type="checkbox"
-                id="featured"
-                name="featured"
-                checked={formData.featured}
-                onChange={handleChange}
-                style={{ width: '18px', height: '18px', accentColor: 'var(--secondary-color)', cursor: 'pointer' }}
-              />
-              <label htmlFor="featured" style={{ color: 'var(--text-white)', fontWeight: '600', cursor: 'pointer', fontSize: '14px' }}>
-                Featured Product (show on homepage)
-              </label>
+            <div className="form-group" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <input
+                  type="checkbox"
+                  id="featured"
+                  name="featured"
+                  checked={formData.featured}
+                  onChange={handleChange}
+                  style={{ width: '18px', height: '18px', accentColor: 'var(--secondary-color)', cursor: 'pointer' }}
+                />
+                <label htmlFor="featured" style={{ color: 'var(--text-white)', fontWeight: '600', cursor: 'pointer', fontSize: '13.5px' }}>
+                  Featured Product
+                </label>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <input
+                  type="checkbox"
+                  id="isEssential"
+                  name="isEssential"
+                  checked={formData.isEssential}
+                  onChange={handleChange}
+                  style={{ width: '18px', height: '18px', accentColor: '#ffc107', cursor: 'pointer' }}
+                />
+                <label htmlFor="isEssential" style={{ color: '#ffc107', fontWeight: '700', cursor: 'pointer', fontSize: '13.5px' }}>
+                  🌟 Necessary Essential Equipment
+                </label>
+              </div>
             </div>
 
             <div className="form-group">

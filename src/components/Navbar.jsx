@@ -1,32 +1,15 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [calcDropdownOpen, setCalcDropdownOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
-  const [branding, setBranding] = useState(null);
   const pathname = usePathname();
-
-  // Load site branding settings on mount
-  useEffect(() => {
-    const fetchBranding = async () => {
-      try {
-        const res = await fetch('/api/settings?key=site_branding');
-        if (res.ok) {
-          const data = await res.json();
-          if (data && data.value) {
-            setBranding(data.value);
-          }
-        }
-      } catch (err) {
-        console.error('Failed to load branding in navbar:', err);
-      }
-    };
-    fetchBranding();
-  }, []);
+  const dropdownRef = useRef(null);
 
   // Listen to custom cart changes or updates in localStorage
   useEffect(() => {
@@ -42,9 +25,7 @@ export default function Navbar() {
 
     updateCartCount();
 
-    // Custom event to listen to local cart changes
     window.addEventListener('vpt-cart-changed', updateCartCount);
-    // Standard storage listener for changes across other tabs
     window.addEventListener('storage', updateCartCount);
 
     return () => {
@@ -53,97 +34,74 @@ export default function Navbar() {
     };
   }, []);
 
-  const navItems = [
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setCalcDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const primaryNavItems = [
     { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
     { name: 'What We Build', path: '/what-we-build' },
     { name: 'Services', path: '/services' },
-    { name: 'About', path: '/about' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Store', path: '/store' },
-    { name: 'Calculator', path: '/calculator' },
-    { name: 'Contact', path: '/contact' },
   ];
 
-  // Helper to determine if link is active
+  const isCalcActive = pathname.startsWith('/calculator') || pathname.startsWith('/equipment-calculator') || pathname.startsWith('/product-calculator');
+
   const isActive = (path) => {
-    if (path === '/') {
-      return pathname === '/';
-    }
+    if (path === '/') return pathname === '/';
     return pathname.startsWith(path);
   };
 
   return (
     <header className="navbar-header">
       <div className="container navbar-container">
-        {/* Logo */}
-        <Link href="/" className="logo-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {branding?.logoImageUrl ? (
-            /* Custom Uploaded Logo Icon */
-            <img
-              src={branding.logoImageUrl}
-              alt="VPT Logo"
-              style={{
-                width: '38px',
-                height: '38px',
-                objectFit: 'contain',
-                filter: 'drop-shadow(0 0 5px rgba(0, 210, 255, 0.4))'
-              }}
-            />
-          ) : (
-            /* Styled V Icon (Fallback) */
-            <span style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '32px',
-              height: '32px',
-              borderRadius: '50%',
-              background: 'rgba(255, 255, 255, 0.03)',
-              border: '1px solid var(--border-glass)',
-              fontSize: '18px',
-              fontWeight: '900',
-              color: '#ef4444',
-              textShadow: '0 0 8px rgba(239, 68, 68, 0.6)',
-              marginRight: '2px',
-              fontFamily: 'var(--font-title)'
-            }}>
-              V
-            </span>
-          )}
+        
+        {/* Exact Vector SVG Logo from User's Branding */}
+        <Link
+          href="/"
+          className="logo-wrapper"
+          style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}
+          aria-label="Vedaant Pools Technology Home"
+        >
+          <svg
+            viewBox="0 0 540 36"
+            style={{ height: '23px', width: 'auto', display: 'block' }}
+            role="img"
+          >
+            {/* VEDAANT POOLS TECHNOLOGY Text */}
+            <text
+              x="0"
+              y="22"
+              fontFamily="Arial, Helvetica, sans-serif"
+              fontWeight="900"
+              fontSize="22"
+              letterSpacing="0.6"
+            >
+              <tspan fill="#EF3838">V</tspan>
+              <tspan fill="#4169E1">EDAANT</tspan>
+              <tspan fill="#4169E1"> POOLS TECHNOLOGY</tspan>
+            </text>
 
-          {/* Full Logo Text */}
-          <div style={{
-            fontSize: '15px',
-            fontWeight: '900',
-            fontFamily: 'var(--font-title)',
-            letterSpacing: '0.02em',
-            textTransform: 'uppercase',
-            display: 'inline-flex',
-            alignItems: 'baseline',
-            position: 'relative',
-            paddingBottom: '2px'
-          }}>
-            <span style={{ position: 'relative', paddingBottom: '2px', marginRight: '6px' }}>
-              <span style={{ color: '#ef4444' }}>V</span>
-              <span style={{ color: '#4460f1' }}>EDAANT</span>
-              <span style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                width: '100%',
-                height: '2.5px',
-                backgroundColor: '#ef4444',
-                borderRadius: '1px'
-              }} />
-            </span>
-            <span style={{ color: '#4460f1' }}>POOLS TECHNOLOGY</span>
-          </div>
+            {/* Red Underline strictly under VEDAANT */}
+            <rect x="0" y="28" width="116" height="3" rx="1.5" fill="#EF3838" />
+          </svg>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
+        {/* Desktop Navigation Links */}
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
           <ul className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
-            {navItems.map((item) => (
+            
+            {/* Primary Links: Home, About, What We Build, Services, Store */}
+            {primaryNavItems.map((item) => (
               <li key={item.name} onClick={() => setMobileMenuOpen(false)}>
                 <Link
                   href={item.path}
@@ -153,20 +111,114 @@ export default function Navbar() {
                 </Link>
               </li>
             ))}
-            {/* Mobile Admin Link */}
-            <li className="lg-hidden" style={{ display: 'none' }}>
-              <Link href="/admin" className="nav-link">
-                Dashboard
+
+            {/* Dropdown Menu for Calculators */}
+            <li
+              ref={dropdownRef}
+              style={{ position: 'relative' }}
+              onMouseEnter={() => setCalcDropdownOpen(true)}
+              onMouseLeave={() => setCalcDropdownOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setCalcDropdownOpen(!calcDropdownOpen)}
+                className={`nav-link ${isCalcActive ? 'active' : ''}`}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  fontFamily: 'inherit'
+                }}
+              >
+                Calculators <span style={{ fontSize: '10px', opacity: 0.8 }}>▼</span>
+              </button>
+
+              {/* Dropdown Box */}
+              {calcDropdownOpen && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: '#091830',
+                    border: '1px solid var(--border-glass)',
+                    borderRadius: '14px',
+                    padding: '8px',
+                    minWidth: '260px',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
+                    zIndex: 1100,
+                    backdropFilter: 'blur(20px)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '4px'
+                  }}
+                >
+                  <Link
+                    href="/calculator"
+                    onClick={() => { setCalcDropdownOpen(false); setMobileMenuOpen(false); }}
+                    style={{
+                      padding: '10px 14px',
+                      borderRadius: '8px',
+                      color: pathname === '/calculator' ? 'var(--secondary-color)' : 'var(--text-light)',
+                      textDecoration: 'none',
+                      fontSize: '13px',
+                      fontWeight: '700',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      background: pathname === '/calculator' ? 'rgba(0, 210, 255, 0.1)' : 'transparent',
+                      transition: 'background 0.2s ease'
+                    }}
+                  >
+                    <span>🏊</span> Pool Construction Estimator
+                  </Link>
+
+                  <Link
+                    href="/equipment-calculator"
+                    onClick={() => { setCalcDropdownOpen(false); setMobileMenuOpen(false); }}
+                    style={{
+                      padding: '10px 14px',
+                      borderRadius: '8px',
+                      color: pathname === '/equipment-calculator' ? 'var(--secondary-color)' : 'var(--text-light)',
+                      textDecoration: 'none',
+                      fontSize: '13px',
+                      fontWeight: '700',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      background: pathname === '/equipment-calculator' ? 'rgba(0, 210, 255, 0.1)' : 'transparent',
+                      transition: 'background 0.2s ease'
+                    }}
+                  >
+                    <span>⚙️</span> Equipment & Product Calculator
+                  </Link>
+                </div>
+              )}
+            </li>
+
+            {/* Contact Link */}
+            <li onClick={() => setMobileMenuOpen(false)}>
+              <Link
+                href="/contact"
+                className={`nav-link ${isActive('/contact') ? 'active' : ''}`}
+              >
+                Contact
               </Link>
             </li>
           </ul>
 
-          {/* Cart Icon & Admin Button */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          {/* Action Items: Cart Icon & Admin Portal */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+            
+            {/* Inquiry Cart Icon Button */}
             <Link href="/cart" className="cart-badge-btn flex-center" aria-label="View Cart">
               <svg
-                width="20"
-                height="20"
+                width="19"
+                height="19"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -181,21 +233,33 @@ export default function Navbar() {
               {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
             </Link>
 
-            <Link href="/admin" className="btn btn-secondary" style={{ padding: '8px 16px', borderRadius: '20px', fontSize: '13px' }}>
+            {/* Admin System Link */}
+            <Link
+              href="/admin"
+              className="btn btn-secondary"
+              style={{
+                padding: '7px 14px',
+                borderRadius: '18px',
+                fontSize: '12.5px',
+                fontWeight: '700',
+                whiteSpace: 'nowrap'
+              }}
+            >
               Admin
             </Link>
 
-            {/* Hamburger Toggle */}
+            {/* Mobile Navigation Toggle */}
             <button
               className="menu-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
-              <span style={{ transform: mobileMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }}></span>
-              <span style={{ opacity: mobileMenuOpen ? 0 : 1 }}></span>
-              <span style={{ transform: mobileMenuOpen ? 'rotate(-45deg) translate(6px, -6px)' : 'none' }}></span>
+              <span style={{ transform: mobileMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
+              <span style={{ opacity: mobileMenuOpen ? 0 : 1 }} />
+              <span style={{ transform: mobileMenuOpen ? 'rotate(-45deg) translate(6px, -6px)' : 'none' }} />
             </button>
           </div>
+
         </nav>
       </div>
     </header>

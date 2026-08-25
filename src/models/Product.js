@@ -27,6 +27,10 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     min: [0, 'Price cannot be negative.'],
   },
+  mrp: {
+    type: Number,
+    min: [0, 'MRP cannot be negative.'],
+  },
   specs: {
     type: Map,
     of: String,
@@ -37,6 +41,10 @@ const ProductSchema = new mongoose.Schema({
     required: [true, 'Please provide an image URL for the product.'],
   },
   featured: {
+    type: Boolean,
+    default: false,
+  },
+  isEssential: {
     type: Boolean,
     default: false,
   },
