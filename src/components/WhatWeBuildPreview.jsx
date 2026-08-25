@@ -41,7 +41,6 @@ export default function WhatWeBuildPreview() {
           const data = await res.json();
           if (data && Array.isArray(data.value) && data.value.length > 0) {
             const builds = data.value;
-            // Match custom images if set in admin
             const poolItem = builds.find(b => b.category === 'Swimming Pools') || builds[0];
             const fountainItem = builds.find(b => b.category === 'Fountains & Water Bodies') || builds[5] || builds[6];
             const waterparkItem = builds.find(b => b.category === 'Waterparks') || builds[8];
@@ -85,8 +84,23 @@ export default function WhatWeBuildPreview() {
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         
-        {/* Section Header (Centered) */}
+        {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+          <span style={{
+            fontSize: '13px',
+            fontWeight: '700',
+            color: '#00d2ff',
+            textTransform: 'uppercase',
+            letterSpacing: '3px',
+            display: 'inline-block',
+            marginBottom: '12px',
+            padding: '6px 16px',
+            background: 'rgba(0, 210, 255, 0.1)',
+            borderRadius: '20px',
+            border: '1px solid rgba(0, 210, 255, 0.25)'
+          }}>
+            TURNKEY CONSTRUCTION PORTFOLIO
+          </span>
           <h2 className="text-gradient" style={{ fontSize: '38px', fontWeight: '800', margin: '0 0 14px 0', letterSpacing: '-0.02em' }}>
             What We Build
           </h2>
@@ -98,6 +112,9 @@ export default function WhatWeBuildPreview() {
             borderRadius: '2px',
             boxShadow: '0 0 10px rgba(0, 210, 255, 0.4)'
           }} />
+          <p style={{ color: 'var(--text-gray)', maxWidth: '720px', margin: '18px auto 0 auto', fontSize: '15.5px', lineHeight: '1.7' }}>
+            Indore's premier turnkey contractor for reinforced concrete swimming pools, DMX musical fountains, waterscapes, and commercial waterpark developments across Central India.
+          </p>
         </div>
 
         {/* 3 Main Categories Grid */}
