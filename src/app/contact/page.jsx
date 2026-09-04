@@ -164,7 +164,7 @@ export default function ContactPage() {
         {/* 1-Click WhatsApp Quick Inquiry Generator Bar */}
         <div className="glass-card" style={{
           padding: '20px 24px',
-          borderRadius: '20px',
+          borderRadius: '10px',
           marginBottom: '40px',
           border: '1px solid rgba(37, 211, 102, 0.3)',
           background: 'rgba(37, 211, 102, 0.04)',
@@ -192,7 +192,7 @@ export default function ContactPage() {
               onChange={(e) => setQuickService(e.target.value)}
               style={{
                 padding: '8px 14px',
-                borderRadius: '16px',
+                borderRadius: '8px',
                 background: 'rgba(0, 0, 0, 0.5)',
                 border: '1px solid var(--border-glass)',
                 color: 'var(--text-light)',
@@ -215,7 +215,7 @@ export default function ContactPage() {
               onChange={(e) => setQuickCity(e.target.value)}
               style={{
                 padding: '8px 14px',
-                borderRadius: '16px',
+                borderRadius: '8px',
                 background: 'rgba(0, 0, 0, 0.5)',
                 border: '1px solid var(--border-glass)',
                 color: 'var(--text-light)',
@@ -236,7 +236,7 @@ export default function ContactPage() {
                 fontWeight: '800',
                 fontSize: '13px',
                 padding: '8px 18px',
-                borderRadius: '16px',
+                borderRadius: '8px',
                 boxShadow: '0 4px 15px rgba(37, 211, 102, 0.3)',
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -257,7 +257,7 @@ export default function ContactPage() {
         }}>
           
           {/* Phone */}
-          <div className="glass-card" style={{ padding: '24px', borderRadius: '20px', textAlign: 'center', border: '1px solid var(--border-glass)' }}>
+          <div className="glass-card" style={{ padding: '24px', borderRadius: '10px', textAlign: 'center', border: '1px solid var(--border-glass)' }}>
             <div style={{
               width: '52px',
               height: '52px',
@@ -287,7 +287,7 @@ export default function ContactPage() {
           </div>
 
           {/* WhatsApp */}
-          <div className="glass-card" style={{ padding: '24px', borderRadius: '20px', textAlign: 'center', border: '1px solid var(--border-glass)' }}>
+          <div className="glass-card" style={{ padding: '24px', borderRadius: '10px', textAlign: 'center', border: '1px solid var(--border-glass)' }}>
             <div style={{
               width: '52px',
               height: '52px',
@@ -320,7 +320,7 @@ export default function ContactPage() {
           </div>
 
           {/* Address */}
-          <div className="glass-card" style={{ padding: '24px', borderRadius: '20px', textAlign: 'center', border: '1px solid var(--border-glass)' }}>
+          <div className="glass-card" style={{ padding: '24px', borderRadius: '10px', textAlign: 'center', border: '1px solid var(--border-glass)' }}>
             <div style={{
               width: '52px',
               height: '52px',
@@ -347,7 +347,7 @@ export default function ContactPage() {
           </div>
 
           {/* Email */}
-          <div className="glass-card" style={{ padding: '24px', borderRadius: '20px', textAlign: 'center', border: '1px solid var(--border-glass)' }}>
+          <div className="glass-card" style={{ padding: '24px', borderRadius: '10px', textAlign: 'center', border: '1px solid var(--border-glass)' }}>
             <div style={{
               width: '52px',
               height: '52px',
@@ -376,7 +376,7 @@ export default function ContactPage() {
         </div>
 
         {/* Tabbed Interactive Section (Form Selector) */}
-        <div className="glass-card" style={{ padding: '32px', borderRadius: '24px', marginBottom: '60px', border: '1px solid var(--border-glass)' }}>
+        <div className="glass-card" style={{ padding: '32px', borderRadius: '12px', marginBottom: '60px', border: '1px solid var(--border-glass)' }}>
           
           {/* Tab Buttons Header */}
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '32px', borderBottom: '1px solid var(--border-glass)', paddingBottom: '16px' }}>
@@ -530,19 +530,19 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   className="btn btn-primary"
-                  style={{ padding: '14px 28px', fontSize: '15px', borderRadius: '12px' }}
+                  style={{ padding: '14px 28px', fontSize: '15px', borderRadius: '8px' }}
                   disabled={contactStatus.loading}
                 >
                   {contactStatus.loading ? 'Submitting Inquiry...' : 'Submit Inquiry Request'}
                 </button>
 
                 {contactStatus.success && (
-                  <div style={{ marginTop: '20px', color: '#27ae60', background: 'rgba(39, 174, 96, 0.1)', padding: '14px', borderRadius: '10px', fontSize: '14px', fontWeight: '600' }}>
+                  <div style={{ marginTop: '20px', color: '#27ae60', background: 'rgba(39, 174, 96, 0.1)', padding: '14px', borderRadius: '8px', fontSize: '14px', fontWeight: '600' }}>
                     {contactStatus.success}
                   </div>
                 )}
                 {contactStatus.error && (
-                  <div style={{ marginTop: '20px', color: '#ef4444', background: 'rgba(239, 68, 68, 0.1)', padding: '14px', borderRadius: '10px', fontSize: '14px' }}>
+                  <div style={{ marginTop: '20px', color: '#ef4444', background: 'rgba(239, 68, 68, 0.1)', padding: '14px', borderRadius: '8px', fontSize: '14px' }}>
                     ❌ {contactStatus.error}
                   </div>
                 )}
@@ -622,19 +622,19 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   className="btn btn-secondary"
-                  style={{ padding: '14px 28px', fontSize: '15px', borderRadius: '12px', background: 'var(--secondary-color)', color: '#000', fontWeight: '800' }}
+                  style={{ padding: '14px 28px', fontSize: '15px', borderRadius: '8px', background: 'var(--secondary-color)', color: '#000', fontWeight: '800' }}
                   disabled={reviewStatus.loading}
                 >
                   {reviewStatus.loading ? 'Submitting...' : 'Submit Public Review'}
                 </button>
 
                 {reviewStatus.success && (
-                  <div style={{ marginTop: '20px', color: '#27ae60', background: 'rgba(39, 174, 96, 0.1)', padding: '14px', borderRadius: '10px', fontSize: '14px', fontWeight: '600' }}>
+                  <div style={{ marginTop: '20px', color: '#27ae60', background: 'rgba(39, 174, 96, 0.1)', padding: '14px', borderRadius: '8px', fontSize: '14px', fontWeight: '600' }}>
                     {reviewStatus.success}
                   </div>
                 )}
                 {reviewStatus.error && (
-                  <div style={{ marginTop: '20px', color: '#ef4444', background: 'rgba(239, 68, 68, 0.1)', padding: '14px', borderRadius: '10px', fontSize: '14px' }}>
+                  <div style={{ marginTop: '20px', color: '#ef4444', background: 'rgba(239, 68, 68, 0.1)', padding: '14px', borderRadius: '8px', fontSize: '14px' }}>
                     ❌ {reviewStatus.error}
                   </div>
                 )}
@@ -648,7 +648,7 @@ export default function ContactPage() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', marginBottom: '60px' }} className="calculator-layout-grid">
           
           {/* Office Address & Business Card */}
-          <div className="glass-card" style={{ padding: '32px', borderRadius: '24px', border: '1px solid var(--border-glass)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div className="glass-card" style={{ padding: '32px', borderRadius: '10px', border: '1px solid var(--border-glass)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
               <span style={{ fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', color: 'var(--primary-color)', letterSpacing: '1px' }}>
                 Verified Corporate Headquarters
@@ -680,27 +680,27 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
-                style={{ fontSize: '12.5px', padding: '8px 16px', borderRadius: '20px', fontWeight: '700' }}
+                style={{ fontSize: '12.5px', padding: '8px 16px', borderRadius: '8px', fontWeight: '700' }}
               >
                 🗺️ Get Directions in Google Maps ➔
               </a>
-              <Link href="/calculator" className="btn btn-secondary" style={{ fontSize: '12.5px', padding: '8px 16px', borderRadius: '20px' }}>
+              <Link href="/calculator" className="btn btn-secondary" style={{ fontSize: '12.5px', padding: '8px 16px', borderRadius: '8px' }}>
                 🏊 Civil Pool Estimator
               </Link>
-              <Link href="/equipment-calculator" className="btn btn-secondary" style={{ fontSize: '12.5px', padding: '8px 16px', borderRadius: '20px' }}>
+              <Link href="/equipment-calculator" className="btn btn-secondary" style={{ fontSize: '12.5px', padding: '8px 16px', borderRadius: '8px' }}>
                 ⚙️ Equipment Calculator
               </Link>
             </div>
           </div>
 
           {/* ACCURATE GOOGLE MAP EMBED FRAME pointing to Vandana Vihar, Bhangarh Road, Indore */}
-          <div className="glass-card" style={{ padding: '12px', borderRadius: '24px', overflow: 'hidden', border: '1px solid var(--border-glass)', minHeight: '340px' }}>
+          <div className="glass-card" style={{ padding: '12px', borderRadius: '10px', overflow: 'hidden', border: '1px solid var(--border-glass)', minHeight: '340px' }}>
             <iframe
               title="Vedaant Pools Indore Head Office Map"
               src="https://maps.google.com/maps?q=Vandana+Vihar+Bhangarh+Road+Indore+Madhya+Pradesh&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
-              style={{ border: 0, borderRadius: '16px', minHeight: '340px' }}
+              style={{ border: 0, borderRadius: '8px', minHeight: '340px' }}
               allowFullScreen=""
               loading="lazy"
             />
@@ -724,7 +724,7 @@ export default function ContactPage() {
               <div
                 key={idx}
                 className="glass-card"
-                style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--border-glass)' }}
+                style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-glass)' }}
               >
                 <button
                   type="button"

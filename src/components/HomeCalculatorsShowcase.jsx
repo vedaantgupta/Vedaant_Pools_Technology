@@ -58,7 +58,7 @@ export default function HomeCalculatorsShowcase() {
           {/* Calculator Card 1: Civil Construction Estimator */}
           <div className="glass-card" style={{
             padding: '36px',
-            borderRadius: '24px',
+            borderRadius: '10px',
             border: '1px solid rgba(0, 210, 255, 0.2)',
             display: 'flex',
             flexDirection: 'column',
@@ -72,7 +72,7 @@ export default function HomeCalculatorsShowcase() {
                   fontSize: '36px',
                   width: '64px',
                   height: '64px',
-                  borderRadius: '16px',
+                  borderRadius: '8px',
                   background: 'rgba(0, 210, 255, 0.1)',
                   border: '1px solid rgba(0, 210, 255, 0.25)',
                   display: 'flex',
@@ -87,7 +87,7 @@ export default function HomeCalculatorsShowcase() {
                   color: '#00d2ff',
                   background: 'rgba(0, 210, 255, 0.15)',
                   padding: '5px 12px',
-                  borderRadius: '20px',
+                  borderRadius: '12px',
                   textTransform: 'uppercase',
                   letterSpacing: '1px'
                 }}>
@@ -124,7 +124,7 @@ export default function HomeCalculatorsShowcase() {
                 padding: '14px',
                 fontSize: '14.5px',
                 fontWeight: '700',
-                borderRadius: '12px',
+                borderRadius: '8px',
                 textAlign: 'center',
                 justifyContent: 'center',
                 boxShadow: '0 4px 15px rgba(11, 94, 221, 0.4)'
@@ -137,7 +137,7 @@ export default function HomeCalculatorsShowcase() {
           {/* Calculator Card 2: Equipment & Wholesale Package Calculator */}
           <div className="glass-card" style={{
             padding: '36px',
-            borderRadius: '24px',
+            borderRadius: '10px',
             border: '1px solid rgba(68, 96, 241, 0.25)',
             display: 'flex',
             flexDirection: 'column',
@@ -151,7 +151,7 @@ export default function HomeCalculatorsShowcase() {
                   fontSize: '36px',
                   width: '64px',
                   height: '64px',
-                  borderRadius: '16px',
+                  borderRadius: '8px',
                   background: 'rgba(68, 96, 241, 0.15)',
                   border: '1px solid rgba(68, 96, 241, 0.3)',
                   display: 'flex',
@@ -166,7 +166,7 @@ export default function HomeCalculatorsShowcase() {
                   color: '#6680ff',
                   background: 'rgba(68, 96, 241, 0.15)',
                   padding: '5px 12px',
-                  borderRadius: '20px',
+                  borderRadius: '12px',
                   textTransform: 'uppercase',
                   letterSpacing: '1px'
                 }}>
@@ -203,7 +203,7 @@ export default function HomeCalculatorsShowcase() {
                 padding: '14px',
                 fontSize: '14.5px',
                 fontWeight: '700',
-                borderRadius: '12px',
+                borderRadius: '8px',
                 textAlign: 'center',
                 justifyContent: 'center',
                 borderColor: 'rgba(68, 96, 241, 0.4)',

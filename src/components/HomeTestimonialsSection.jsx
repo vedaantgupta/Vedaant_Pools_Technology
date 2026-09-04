@@ -54,12 +54,12 @@ export default function HomeTestimonialsSection({ initialTestimonials = [] }) {
   const [newReview, setNewReview] = useState({ name: '', location: '', service: 'Swimming Pool Construction', rating: 5, message: '' });
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
 
-  // Auto-play slide timer (every 4 seconds)
+  // Auto-play slide timer (every 3 seconds)
   useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % reviews.length);
-    }, 4000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [isAutoPlaying, reviews.length]);
 
@@ -170,7 +170,7 @@ export default function HomeTestimonialsSection({ initialTestimonials = [] }) {
         <div style={{
           background: 'rgba(9, 28, 54, 0.85)',
           border: '1px solid var(--border-glass)',
-          borderRadius: '20px',
+          borderRadius: '10px',
           padding: '20px 32px',
           marginBottom: '36px',
           display: 'flex',
@@ -284,10 +284,10 @@ export default function HomeTestimonialsSection({ initialTestimonials = [] }) {
                 className="glass-card"
                 style={{
                   padding: '26px',
-                  borderRadius: '20px',
+                  borderRadius: '10px',
                   display: 'flex',
                   flexDirection: 'column',
-                  justify: 'space-between',
+                  justifyContent: 'space-between',
                   border: idx === 0 ? '1px solid rgba(0, 210, 255, 0.4)' : '1px solid var(--border-glass)',
                   background: 'linear-gradient(145deg, rgba(9, 28, 54, 0.9) 0%, rgba(5, 19, 41, 0.95) 100%)',
                   transform: idx === 0 ? 'scale(1.02)' : 'scale(1)',
@@ -425,7 +425,7 @@ export default function HomeTestimonialsSection({ initialTestimonials = [] }) {
             width: '100%',
             maxWidth: '520px',
             padding: '32px',
-            borderRadius: '24px',
+            borderRadius: '12px',
             border: '1px solid rgba(0, 210, 255, 0.3)',
             position: 'relative',
             background: '#091c36'

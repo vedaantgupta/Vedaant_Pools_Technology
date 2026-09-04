@@ -355,7 +355,7 @@ export default function GalleryPage() {
                   className="glass-card"
                   onClick={() => { setSelectedIdx(idx); setActiveMediaIdx(0); }}
                   style={{
-                    borderRadius: '16px',
+                    borderRadius: '10px',
                     overflow: 'hidden',
                     cursor: 'pointer',
                     position: 'relative',

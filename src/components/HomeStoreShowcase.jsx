@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 
 export default function HomeStoreShowcase({ initialProducts = [] }) {
   const [activeCategory, setActiveCategory] = useState('All');
   const [cartToast, setCartToast] = useState(null);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const sliderRef = useRef(null);
 
   const categories = [
@@ -23,18 +24,44 @@ export default function HomeStoreShowcase({ initialProducts = [] }) {
     return initialProducts.filter(p => p.category === activeCategory);
   }, [activeCategory, initialProducts]);
 
-  // Slide navigation
+  // Slide navigation with loop-around
   const slideLeft = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: -340, behavior: 'smooth' });
+      const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+      if (scrollLeft <= 10) {
+        sliderRef.current.scrollTo({ left: scrollWidth - clientWidth, behavior: 'smooth' });
+      } else {
+        sliderRef.current.scrollBy({ left: -340, behavior: 'smooth' });
+      }
     }
   };
 
   const slideRight = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: 340, behavior: 'smooth' });
+      const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+      if (scrollLeft + clientWidth >= scrollWidth - 20) {
+        sliderRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        sliderRef.current.scrollBy({ left: 340, behavior: 'smooth' });
+      }
     }
   };
+
+  // Auto-move store slider every 3 seconds (pauses on hover)
+  useEffect(() => {
+    if (!isAutoPlaying || filteredProducts.length <= 2) return;
+    const interval = setInterval(() => {
+      if (sliderRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
+          sliderRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          sliderRef.current.scrollBy({ left: 340, behavior: 'smooth' });
+        }
+      }
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, filteredProducts.length]);
 
   // Quick Add To Cart handler with custom toast
   const handleAddToCart = (product, e) => {
@@ -69,7 +96,12 @@ export default function HomeStoreShowcase({ initialProducts = [] }) {
   };
 
   return (
-    <section className="section" style={{ background: 'var(--bg-navy)', position: 'relative', overflow: 'hidden' }}>
+    <section
+      className="section"
+      style={{ background: 'var(--bg-navy)', position: 'relative', overflow: 'hidden' }}
+      onMouseEnter={() => setIsAutoPlaying(false)}
+      onMouseLeave={() => setIsAutoPlaying(true)}
+    >
       
       {/* Decorative Glow */}
       <div style={{
@@ -363,7 +395,7 @@ export default function HomeStoreShowcase({ initialProducts = [] }) {
                       display: 'flex',
                       flexDirection: 'column',
                       overflow: 'hidden',
-                      borderRadius: '18px',
+                      borderRadius: '10px',
                       background: 'var(--bg-glass)',
                       border: '1px solid var(--border-glass)',
                       transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',

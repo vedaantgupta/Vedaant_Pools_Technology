@@ -3,6 +3,7 @@ import dbConnect from '@/lib/dbConnect';
 import Product from '@/models/Product';
 import Testimonial from '@/models/Testimonial';
 import Setting from '@/models/Setting';
+import Project from '@/models/Project';
 import HeroSection from '@/components/HeroSection';
 import AboutQuickSection from '@/components/AboutQuickSection';
 import ServicesCatalog from '@/components/ServicesCatalog';
@@ -18,6 +19,7 @@ export default async function Home() {
   let testimonials = [];
   let heroBackgrounds = [];
   let siteBranding = null;
+  let projects = [];
 
   try {
     await dbConnect();
@@ -25,6 +27,9 @@ export default async function Home() {
     featuredProducts = await Product.find({}).lean();
     // Fetch approved testimonials
     testimonials = await Testimonial.find({ status: 'approved' }).limit(6).lean();
+
+    // Fetch projects for gallery showcase
+    projects = await Project.find({}).sort({ createdAt: -1 }).limit(8).lean();
 
     // Fetch hero background settings
     const settingsDoc = await Setting.findOne({ key: 'hero_backgrounds' });
@@ -63,7 +68,7 @@ export default async function Home() {
       <HomeStoreShowcase initialProducts={JSON.parse(JSON.stringify(featuredProducts))} />
 
       {/* 7. Featured Project Photo Gallery Showcase */}
-      <HomeGalleryShowcase />
+      <HomeGalleryShowcase initialProjects={JSON.parse(JSON.stringify(projects))} />
 
       {/* 8. Upgraded Client Reviews & Testimonials Section */}
       <HomeTestimonialsSection initialTestimonials={JSON.parse(JSON.stringify(testimonials))} />

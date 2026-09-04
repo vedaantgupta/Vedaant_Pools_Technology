@@ -63,6 +63,7 @@ const defaultServices = [
 export default function ServicesCatalog() {
   const [services, setServices] = useState(defaultServices);
   const [isGridView, setIsGridView] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const sliderRef = useRef(null);
 
   useEffect(() => {
@@ -82,21 +83,52 @@ export default function ServicesCatalog() {
     fetchDynamicServices();
   }, []);
 
-  // Slide navigation
+  // Slide navigation with loop-around
   const slideLeft = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: -360, behavior: 'smooth' });
+      const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+      if (scrollLeft <= 10) {
+        sliderRef.current.scrollTo({ left: scrollWidth - clientWidth, behavior: 'smooth' });
+      } else {
+        sliderRef.current.scrollBy({ left: -360, behavior: 'smooth' });
+      }
     }
   };
 
   const slideRight = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: 360, behavior: 'smooth' });
+      const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+      if (scrollLeft + clientWidth >= scrollWidth - 20) {
+        sliderRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        sliderRef.current.scrollBy({ left: 360, behavior: 'smooth' });
+      }
     }
   };
 
+  // Auto-move slider every 3 seconds (pauses on hover and when in full grid view)
+  useEffect(() => {
+    if (!isAutoPlaying || isGridView) return;
+    const interval = setInterval(() => {
+      if (sliderRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 20) {
+          sliderRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          sliderRef.current.scrollBy({ left: 360, behavior: 'smooth' });
+        }
+      }
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, isGridView, services]);
+
   return (
-    <section className="section" style={{ background: 'linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-navy) 100%)', position: 'relative', overflow: 'hidden' }}>
+    <section
+      className="section"
+      style={{ background: 'linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-navy) 100%)', position: 'relative', overflow: 'hidden' }}
+      onMouseEnter={() => setIsAutoPlaying(false)}
+      onMouseLeave={() => setIsAutoPlaying(true)}
+    >
       {/* Decorative background glows */}
       <div style={{
         position: 'absolute',
@@ -280,7 +312,7 @@ export default function ServicesCatalog() {
                     display: 'flex',
                     flexDirection: 'column',
                     overflow: 'hidden',
-                    borderRadius: '18px',
+                    borderRadius: '10px',
                     background: 'var(--bg-glass)',
                     border: '1px solid var(--border-glass)',
                     transition: 'transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease'

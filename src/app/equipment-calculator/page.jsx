@@ -486,7 +486,7 @@ export default function EquipmentCalculatorPage() {
         </div>
 
         {/* 1-Click Pool Size Package Presets Bar */}
-        <div className="glass-card" style={{ padding: '24px', borderRadius: '20px', marginBottom: '32px', border: '1px solid var(--border-glass)' }}>
+        <div className="glass-card" style={{ padding: '24px', borderRadius: '10px', marginBottom: '32px', border: '1px solid var(--border-glass)' }}>
           <div style={{ fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--primary-color)', marginBottom: '14px' }}>
             ⚡ 1-Click Smart Package Presets (Select Your Pool Type)
           </div>
@@ -501,7 +501,7 @@ export default function EquipmentCalculatorPage() {
                   onClick={() => handleApplyPreset(preset)}
                   style={{
                     padding: '14px',
-                    borderRadius: '14px',
+                    borderRadius: '8px',
                     background: isActive ? 'rgba(0, 210, 255, 0.12)' : 'rgba(255, 255, 255, 0.03)',
                     border: isActive ? '2px solid var(--primary-color)' : '1px solid var(--border-glass)',
                     textAlign: 'left',
@@ -524,7 +524,7 @@ export default function EquipmentCalculatorPage() {
         </div>
 
         {/* Wholesale Tier Progress Bar */}
-        <div className="glass-card" style={{ padding: '20px 24px', marginBottom: '32px', borderRadius: '20px', border: '1px solid var(--border-glass)' }}>
+        <div className="glass-card" style={{ padding: '20px 24px', marginBottom: '32px', borderRadius: '10px', border: '1px solid var(--border-glass)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', marginBottom: '10px' }}>
             <div>
               <span style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '700', color: 'var(--primary-color)' }}>
@@ -566,7 +566,7 @@ export default function EquipmentCalculatorPage() {
         </div>
 
         {/* Search, Sort & Category Filter Controls */}
-        <div className="glass-card" style={{ padding: '16px 20px', borderRadius: '16px', marginBottom: '28px', border: '1px solid var(--border-glass)' }}>
+        <div className="glass-card" style={{ padding: '16px 20px', borderRadius: '10px', marginBottom: '28px', border: '1px solid var(--border-glass)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto auto', gap: '16px', alignItems: 'center' }} className="calculator-filter-grid">
             
             {/* Search Input */}
@@ -579,7 +579,7 @@ export default function EquipmentCalculatorPage() {
                 style={{
                   width: '100%',
                   padding: '10px 16px',
-                  borderRadius: '20px',
+                  borderRadius: '8px',
                   background: 'rgba(0, 0, 0, 0.3)',
                   border: '1px solid var(--border-glass)',
                   color: 'var(--text-light)',
@@ -597,7 +597,7 @@ export default function EquipmentCalculatorPage() {
                 onChange={(e) => setSortBy(e.target.value)}
                 style={{
                   padding: '10px 14px',
-                  borderRadius: '20px',
+                  borderRadius: '8px',
                   background: 'rgba(0, 0, 0, 0.4)',
                   border: '1px solid var(--border-glass)',
                   color: 'var(--text-light)',
@@ -619,7 +619,7 @@ export default function EquipmentCalculatorPage() {
               onClick={() => setEssentialsOnly(!essentialsOnly)}
               style={{
                 padding: '10px 16px',
-                borderRadius: '20px',
+                borderRadius: '8px',
                 fontSize: '13px',
                 fontWeight: '700',
                 cursor: 'pointer',
@@ -643,7 +643,7 @@ export default function EquipmentCalculatorPage() {
                 type="button"
                 onClick={() => setActiveCategory(cat)}
                 className={`btn ${activeCategory === cat ? 'btn-primary' : 'btn-secondary'}`}
-                style={{ fontSize: '12.5px', padding: '6px 14px', borderRadius: '18px' }}
+                style={{ fontSize: '12.5px', padding: '6px 14px', borderRadius: '8px' }}
               >
                 {cat === 'ALL' ? '✨ All Products' : cat}
               </button>
@@ -671,7 +671,7 @@ export default function EquipmentCalculatorPage() {
                     className="glass-card"
                     style={{
                       padding: '20px',
-                      borderRadius: '16px',
+                      borderRadius: '10px',
                       border: isSelected ? '1.5px solid var(--primary-color)' : '1px solid var(--border-glass)',
                       background: isSelected ? 'rgba(0, 210, 255, 0.04)' : 'var(--bg-surface)',
                       transition: 'all 0.2s ease',
@@ -685,7 +685,7 @@ export default function EquipmentCalculatorPage() {
                     <div style={{
                       width: '95px',
                       height: '95px',
-                      borderRadius: '12px',
+                      borderRadius: '8px',
                       background: 'rgba(0,0,0,0.3)',
                       overflow: 'hidden',
                       display: 'flex',
@@ -856,7 +856,7 @@ export default function EquipmentCalculatorPage() {
                 position: 'sticky',
                 top: '100px',
                 padding: '24px',
-                borderRadius: '20px',
+                borderRadius: '10px',
                 border: '1px solid var(--border-glass)'
               }}
             >

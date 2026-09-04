@@ -43,7 +43,7 @@ export default function Footer() {
 
   return (
     <footer className="footer" style={{ borderTop: '1px solid var(--border-glass)', background: 'var(--bg-surface)' }}>
-      
+
       {/* Quick Callback Top Ribbon */}
       <div style={{ background: 'rgba(0, 210, 255, 0.05)', borderBottom: '1px solid var(--border-glass)', padding: '18px 0' }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
@@ -98,7 +98,7 @@ export default function Footer() {
 
       <div className="container" style={{ paddingTop: '50px', paddingBottom: '40px' }}>
         <div className="footer-grid">
-          
+
           {/* Brand & Corporate Bio */}
           <div>
             <div className="footer-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
@@ -118,7 +118,7 @@ export default function Footer() {
                 V
               </span>
               <span style={{ fontSize: '20px', fontWeight: '900', color: 'var(--text-light)', fontFamily: 'var(--font-title)' }}>
-                VEDAANT POOLS
+                VEDAANT POOLS TECHNOLOGY
               </span>
             </div>
 

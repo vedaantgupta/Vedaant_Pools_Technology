@@ -575,7 +575,7 @@ function StoreContent() {
         .store-controls-card {
           padding: 20px;
           margin-bottom: 20px;
-          border-radius: 16px;
+          border-radius: 10px;
         }
 
         .controls-top-row {
@@ -724,7 +724,7 @@ function StoreContent() {
 
         /* Interactive Product Card - Clickable Everywhere */
         .product-card-interactive {
-          border-radius: 16px;
+          border-radius: 10px;
           overflow: hidden;
           display: flex;
           flex-direction: column;
