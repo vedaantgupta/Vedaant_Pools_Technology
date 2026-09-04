@@ -31,6 +31,11 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  width: 1280,
+  initialScale: null,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html

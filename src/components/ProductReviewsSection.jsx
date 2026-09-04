@@ -774,11 +774,14 @@ export default function ProductReviewsSection({
           color: #fff;
         }
 
+        /* Disabled reviews collapse under 900px to maintain desktop 2-column layout on all devices */
+        /*
         @media (max-width: 900px) {
           .reviews-main-grid {
             grid-template-columns: 1fr;
           }
         }
+        */
       `}</style>
     </div>
   );

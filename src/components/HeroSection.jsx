@@ -60,12 +60,14 @@ export default function HeroSection({ backgroundImages, branding }) {
       onMouseMove={handleMouseMove}
       style={{
         position: 'relative',
-        minHeight: '92vh',
+        height: '720px',
+        minHeight: '720px',
+        maxHeight: '720px',
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
         color: 'var(--text-white)',
-        padding: '80px 0'
+        padding: '0'
       }}
     >
       {/* Background Parallax Layer */}
@@ -173,12 +175,13 @@ export default function HeroSection({ backgroundImages, branding }) {
             {/* Custom stylized logo text */}
             <div style={{ marginBottom: '20px' }}>
               <div style={{
-                fontSize: 'clamp(28px, 4vw, 40px)',
+                fontSize: '40px',
                 fontWeight: '900',
                 fontFamily: 'var(--font-title)',
                 letterSpacing: '0.02em',
                 display: 'inline-flex',
-                flexWrap: 'wrap',
+                flexWrap: 'nowrap',
+                whiteSpace: 'nowrap',
                 alignItems: 'baseline',
                 lineHeight: '1.2',
                 textTransform: 'uppercase'
@@ -232,14 +235,14 @@ export default function HeroSection({ backgroundImages, branding }) {
             </div>
 
             {/* Tagline: From Conceptualization to Finalisation */}
-            <div style={{ display: 'inline-block', marginBottom: '28px' }}>
+            <div style={{ display: 'inline-block', marginBottom: '24px' }}>
               <h2 className="hero-tagline-text" style={{
-                fontSize: 'calc(1.15rem + 0.5vw)',
-                fontWeight: '400',
+                fontSize: '26px',
+                fontWeight: '800',
                 fontFamily: 'var(--font-sans)',
                 color: '#ffffff',
-                letterSpacing: '1px',
-                lineHeight: '1.4',
+                letterSpacing: '0.5px',
+                lineHeight: '1.3',
                 textShadow: '0 2px 4px rgba(0,0,0,0.5)',
                 margin: 0
               }}>
@@ -250,7 +253,7 @@ export default function HeroSection({ backgroundImages, branding }) {
                       if (part.toLowerCase() === 'conceptualization' || part.toLowerCase() === 'finalisation') {
                         return (
                           <span key={index} style={{
-                            fontWeight: '800',
+                            fontWeight: '900',
                             background: 'linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
@@ -272,11 +275,11 @@ export default function HeroSection({ backgroundImages, branding }) {
             {/* Slogan Description */}
             <p style={{
               color: 'var(--text-gray)',
-              fontSize: '17px',
-              lineHeight: '1.8',
-              maxWidth: '650px',
-              marginBottom: '40px',
-              fontWeight: '400',
+              fontSize: '16px',
+              lineHeight: '1.7',
+              maxWidth: '620px',
+              marginBottom: '36px',
+              fontWeight: '600',
               textShadow: '0 2px 4px rgba(0,0,0,0.5)'
             }}>
               {slogan}
@@ -558,6 +561,8 @@ export default function HeroSection({ backgroundImages, branding }) {
         }
 
         /* Responsive Layout Stacking */
+        /* Disabled layout overrides under 991px to keep side-by-side desktop layout on all devices (like example/artist) */
+        /*
         @media (max-width: 991px) {
           .hero-split-grid {
             grid-template-columns: 1fr !important;
@@ -577,7 +582,7 @@ export default function HeroSection({ backgroundImages, branding }) {
             justify-content: center;
           }
           .hero-right-visual {
-            order: -1; /* Place emblem ABOVE text on mobile screens */
+            order: -1;
           }
           .glowing-ring, .glowing-ring-solid {
             width: 290px !important;
@@ -606,6 +611,7 @@ export default function HeroSection({ backgroundImages, branding }) {
             flex-shrink: 0 !important;
           }
         }
+        */
       `}</style>
     </section>
   );

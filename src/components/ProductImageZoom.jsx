@@ -546,6 +546,8 @@ export default function ProductImageZoom({ images = [], title = "Product", categ
           padding-top: 8px;
         }
 
+        /* Disabled gallery layout collapse under 1024px to preserve desktop image layout on all devices */
+        /*
         @media (max-width: 1024px) {
           .zoom-flyout-window {
             display: none !important;
@@ -564,6 +566,7 @@ export default function ProductImageZoom({ images = [], title = "Product", categ
             max-height: 320px;
           }
         }
+        */
       `}</style>
     </div>
   );

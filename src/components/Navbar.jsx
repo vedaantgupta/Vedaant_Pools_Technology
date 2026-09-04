@@ -97,8 +97,8 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          <ul className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <ul className="nav-links">
             
             {/* Primary Links: Home, About, What We Build, Services, Store */}
             {primaryNavItems.map((item) => (
@@ -247,17 +247,6 @@ export default function Navbar() {
             >
               Admin
             </Link>
-
-            {/* Mobile Navigation Toggle */}
-            <button
-              className="menu-toggle"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <span style={{ transform: mobileMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
-              <span style={{ opacity: mobileMenuOpen ? 0 : 1 }} />
-              <span style={{ transform: mobileMenuOpen ? 'rotate(-45deg) translate(6px, -6px)' : 'none' }} />
-            </button>
           </div>
 
         </nav>

@@ -245,15 +245,17 @@ textarea.form-input {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 16px;
   list-style: none;
+  flex-wrap: nowrap;
 }
 .nav-link {
-  font-weight: 500;
-  font-size: 15px;
+  font-weight: 700;
+  font-size: 14px;
   color: var(--text-light);
   padding: 8px 0;
   position: relative;
+  white-space: nowrap;
 }
 .nav-link:hover, .nav-link.active {
   color: var(--secondary-color);
@@ -303,23 +305,11 @@ textarea.form-input {
   padding: 0 4px;
 }
 
-/* ---------- Responsive Menu Mobile ---------- */
+/* ---------- Responsive Menu Mobile (Disabled to match desktop on all devices like example/artist) ---------- */
 .menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  flex-direction: column;
-  gap: 6px;
-  padding: 4px;
+  display: none !important;
 }
-.menu-toggle span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--text-white);
-  transition: var(--transition-smooth);
-}
+/*
 @media (max-width: 991px) {
   .menu-toggle {
     display: flex;
@@ -344,6 +334,7 @@ textarea.form-input {
     opacity: 1;
   }
 }
+*/
 
 /* ---------- Grid Layouts ---------- */
 .grid-3 {
@@ -356,6 +347,8 @@ textarea.form-input {
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
 }
+/* Disabled layout overrides under 991px/640px to keep multi-column desktop format */
+/*
 @media (max-width: 991px) {
   .grid-3 {
     grid-template-columns: repeat(2, 1fr);
@@ -367,6 +360,7 @@ textarea.form-input {
     gap: 24px;
   }
 }
+*/
 
 /* ---------- Footer Styling ---------- */
 .footer {
@@ -416,6 +410,8 @@ textarea.form-input {
   flex-wrap: wrap;
   gap: 20px;
 }
+/* Disabled footer collapse under 991px/640px to preserve desktop 4-column footer layout */
+/*
 @media (max-width: 991px) {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
@@ -430,6 +426,7 @@ textarea.form-input {
     text-align: center;
   }
 }
+*/
 
 /* ==========================================================================
    INTERACTIVE POOL COST CALCULATOR SYSTEM STYLE SHEET
@@ -442,11 +439,14 @@ textarea.form-input {
   align-items: start;
 }
 
+/* Disabled calculator collapse under 1024px to preserve desktop 2-column layout */
+/*
 @media (max-width: 1024px) {
   .calc-container {
     grid-template-columns: 1fr;
   }
 }
+*/
 
 /* Stepper Component */
 .stepper-wrapper {
@@ -1538,6 +1538,8 @@ input:checked + .slider-toggle:before {
   font-size: 12px;
 }
 
+/* Disabled services detail collapse under 991px to preserve side-by-side desktop layout */
+/*
 @media (max-width: 991px) {
   .services-detail-row {
     flex-direction: column !important;
@@ -1547,6 +1549,7 @@ input:checked + .slider-toggle:before {
     width: 100%;
   }
 }
+*/
 
 /* ---------- Premium About Page Styles ---------- */
 .about-hero {
@@ -1672,6 +1675,8 @@ input:checked + .slider-toggle:before {
   color: var(--secondary-color);
 }
 
+/* Disabled about stats & founder card collapse under 991px/640px to preserve desktop layout */
+/*
 @media (max-width: 991px) {
   .about-stat-strip {
     grid-template-columns: repeat(2, 1fr);
@@ -1700,6 +1705,7 @@ input:checked + .slider-toggle:before {
     padding-bottom: 0;
   }
 }
+*/
 
 /* ---------- 'What We Build' Page Styles ---------- */
 .builds-hero {
@@ -1828,11 +1834,14 @@ input:checked + .slider-toggle:before {
   border-radius: 4px;
 }
 
+/* Disabled calculator layout grid collapse under 992px */
+/*
 @media (max-width: 992px) {
   .calculator-layout-grid {
     grid-template-columns: 1fr !important;
   }
 }
+*/
 
 
 

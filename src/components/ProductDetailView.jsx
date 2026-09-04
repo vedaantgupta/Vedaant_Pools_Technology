@@ -697,6 +697,8 @@ export default function ProductDetailView({ product, relatedProducts = [] }) {
           }
         }
 
+        /* Disabled 860px collapse to maintain desktop multi-column layout on all devices */
+        /*
         @media (max-width: 860px) {
           .product-showcase-grid {
             grid-template-columns: 1fr;
@@ -711,6 +713,7 @@ export default function ProductDetailView({ product, relatedProducts = [] }) {
             grid-template-columns: 1fr 1fr;
           }
         }
+        */
       `}</style>
     </div>
   );
